@@ -1,1 +1,1 @@
-[{"title":"Hello World","date":"2018.01.15","uri":"2018/01/15/hello-world/","excerpt":""},{"title":"我的家","date":"2018.01.15","uri":"2018/01/15/我的家/","excerpt":""}]
+[{"title":"Hello World","date":"2018.01.15","uri":"2018/01/15/hello-world/","excerpt":""}]
