@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>6.html-ie兼容性问题 | woyinzf</title>
+    <title>1.通过docker 跑起 zabbix server | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码文档模式：
-文档模式的主要作用是影响浏览器显示网页HTML的方式，在接到返回的HTML文件后，决定以哪个IE版本的文档模式解析该页面（举例来说：JS脚本就是依赖文档模式，IE9的js变化就需要IE9文档模式来支持）。
-浏览器模式的主要作用是为">
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理跑起监控四个步骤：=======================start
+docker create -v /home/yinzf/zabbix-mysql-data –name zabbix-mysql-data mysql
+docker ru">
     
     
     
@@ -67,15 +67,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/14/6.html-ie兼容性问题/" title="6.html-ie兼容性问题" itemprop="url">6.html-ie兼容性问题</a>
+      <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.通过docker 跑起 zabbix server" itemprop="url">1.通过docker 跑起 zabbix server</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-14T15:06:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-20T23:08:42.447Z" itemprop="dateModified">2018-01-21</time>
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-20T23:34:59.627Z" itemprop="dateModified">2018-01-21</time>
     
   </p>
 </header>
@@ -84,28 +84,23 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol>
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>文档模式：</p>
-<p>文档模式的主要作用是影响浏览器显示网页HTML的方式，在接到返回的HTML文件后，决定以哪个IE版本的文档模式解析该页面（举例来说：JS脚本就是依赖文档模式，IE9的js变化就需要IE9文档模式来支持）。</p>
-<p>浏览器模式的主要作用是为兼容较早版本的IE，它会控制浏览器发出的UserAgent，表示以哪个版本的浏览器发出请求，以此来允许为某个特定IE版本设计的代码正确执行（举例来说：有些代码真是判断ie版本的，还有css里也有判断ie版本的）。</p>
-<p>1、定位一个IE兼容性问题，想让IE默认使用兼容模式，并且文档模式使用IE8，或者默认以IE最高的版本运行。</p>
-<p>2、使用的代码是</p>
- <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
-
-<p>3、使用这个IE默认还是标准模式和文档模式是，必须要加上 &lt;!DOCTYPE html&gt; 或者</p>
-<p>&lt;!DOCTYPE html PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN” “<a href="http://www.w3.org/TR/html4/loose.dtd&quot;&gt;" target="_blank" rel="noopener">http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</a></p>
-<p>或者使用</p>
-<!-- 使用客户端当前IE的最高版本渲染机制,禁止使用兼容模式(IE9登录异常) -->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>跑起监控四个步骤：=======================start</p>
+<p>docker create -v /home/yinzf/zabbix-mysql-data –name zabbix-mysql-data mysql</p>
+<p>docker run -d \<br>-e MYSQL_ROOT_PASSWORD=zabbix \<br>-e MYSQL_USER=zabbix \<br>-e MYSQL_DATABASE=zabbix \<br>-e MYSQL_PASSWORD=zabbix \<br>–volumes-from zabbix-mysql-data \<br>–name zabbix-mysql mysql</p>
+<p>docker run -d \<br>-p 10051:10051 \<br>–link zabbix-mysql:mysql \<br>–name zabbix-server enderson/zabbix-server</p>
+<p>docker run -d \<br>  -p 10052:80 \<br>  –link zabbix-mysql:mysql \<br>  –link zabbix-server:zbx \<br>  -e ZBX_SERVER_NAME=docker-zabbix-server \<br>  –name zabbix-web enderson/zabbix-web</p>
+<p>用户名:Admin    注A大写<br>密码：zabbix</p>
+<p>跑起监控四个步骤：=======================end</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Html/">Html</a>
+  <span></span> <a href="/tags/Zabbix/">Zabbix</a>
   </div>
 
 
@@ -118,7 +113,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/01/14/6.html-ie兼容性问题/" data-title="6.html-ie兼容性问题 | woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" data-title="1.通过docker 跑起 zabbix server | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -128,18 +123,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2018/01/19/hello-world/" title="">
+ <a href="/2015/01/14/1.linux-实用的linux命令/" title="1.实用的linux命令">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  (no title)</span>
+  1.实用的linux命令</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/5.html-常用js校验/"  title="5.html-常用js校验">
+<a href="/2015/01/14/1.html-超链接target处理/"  title="1.超链接加上garget处理">
  <strong>NEXT:</strong><br/> 
- <span>5.html-常用js校验
+ <span>1.超链接加上garget处理
 </span>
 </a>
 </div>
@@ -152,7 +147,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol>
   </div>
 
 <div id="asidepart">

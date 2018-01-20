@@ -34,7 +34,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -47,7 +47,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -160,16 +160,16 @@ QQ：  962087325
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/3.linux-自己实践过的nfs配置/" title="3.linux-自己实践过的nfs配置" itemprop="url">
+    <a href="/2015/01/14/1.etcd-初始ETCD/" title="1.初始ETCD" itemprop="url">
   
-    <h1 itemprop="name">3.linux-自己实践过的nfs配置</h1>
+    <h1 itemprop="name">1.初始ETCD</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理注意点：
-
-按照以下步骤执行
-软件在服务端和客户端都要执行安装。
-把两个服务器的防火墙给关闭。重启后生效开启： chkconfig iptables on关闭： chkconfig iptables off 或者 /sbin/c</p>
+           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码本机跑起etcd的步骤：
+1.安装 go 1.9
+2.执行如下步骤：
+git clone https://github.com/coreos/etcd.git$ cd etcd$ ./build
+GOPATH should</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -193,35 +193,37 @@ onpaste=”return false” onselectstart=”return false”</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
+    <a href="/2015/01/14/1.mac的常用技巧/" title="1.mac 的常用技巧" itemprop="url">
   
-    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
+    <h1 itemprop="name">1.mac 的常用技巧</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
-scp ~/.ssh/id_rsa.p</p>
+           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理1.彻底清理浏览器缓存：
+清理火狐，谷歌的浏览器缓存————可以从 safel 浏览器里进行彻底清除。
+2.mac 查询文件
+which solcjs
+3.mac 下设置vi/vim 高亮
+步骤1：
+  cp /usr/shar</p>
         
     
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
   </a>
 </section>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示" itemprop="url">
+    <a href="/2015/01/14/1.nodejs-nodejs程序docker化部署/" title="1.nodejs程序docker化部署" itemprop="url">
   
-    <h1 itemprop="name">2浏览器对base64二进制图片展示</h1>
+    <h1 itemprop="name">1.nodejs程序docker化部署</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码页面    
-
-
-
-
-js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get”,    dataType: “json”,    async:”false”,    url: “/Demo</p>
+           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码1.下载node环境：docker pull node
+2.编写脚本文件restart_cm(内容如下)———记得授权给此脚本： chmod +x *.sh
+sudo docker stop $(sudo docker p</p>
         
     
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
   </a>
 </section>
 
@@ -231,18 +233,18 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分类</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/blog/" title="blog">blog<sup>21</sup></a></li>
+			<li><a href="/categories/blog/" title="blog">blog<sup>26</sup></a></li>
 		
 		</ul>
 </div>
@@ -250,8 +252,10 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
 		
 			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
 		
@@ -259,12 +263,18 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
 		
 			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
 		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>2</sup></a></li>
+		
 		</ul>
 </div>
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 订阅</a>
+	<a href="" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>

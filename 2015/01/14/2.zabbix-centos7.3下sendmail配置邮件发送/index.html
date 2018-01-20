@@ -1,0 +1,347 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>2.centos7.3下sendmail配置邮件发送 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理当前测试环境是：172.16.192.90
+1.下载软件wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz
+2.创建目录mkdir /usr/">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/2.zabbix-centos7.3下sendmail配置邮件发送/" title="2.centos7.3下sendmail配置邮件发送" itemprop="url">2.centos7.3下sendmail配置邮件发送</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-20T23:38:53.943Z" itemprop="dateModified">2018-01-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载软件"><span class="toc-number">2.</span> <span class="toc-text">1.下载软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建目录"><span class="toc-number">3.</span> <span class="toc-text">2.创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解压软件"><span class="toc-number">4.</span> <span class="toc-text">3.解压软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-进入目录"><span class="toc-number">5.</span> <span class="toc-text">4.进入目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-复制文件，并设置权限"><span class="toc-number">6.</span> <span class="toc-text">5.复制文件，并设置权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-安装组件"><span class="toc-number">7.</span> <span class="toc-text">6.安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-请求实例："><span class="toc-number">8.</span> <span class="toc-text">7.请求实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到问题："><span class="toc-number">9.</span> <span class="toc-text">遇到问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决："><span class="toc-number">10.</span> <span class="toc-text">解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sendEmail乱码解决"><span class="toc-number">11.</span> <span class="toc-text">sendEmail乱码解决</span></a></li></ol>
+		</div>
+		
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>当前测试环境是：172.16.192.90</p>
+<h3 id="1-下载软件"><a href="#1-下载软件" class="headerlink" title="1.下载软件"></a>1.下载软件</h3><p>wget <a href="http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz" target="_blank" rel="noopener">http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz</a></p>
+<h3 id="2-创建目录"><a href="#2-创建目录" class="headerlink" title="2.创建目录"></a>2.创建目录</h3><p>mkdir /usr/local/bin</p>
+<h3 id="3-解压软件"><a href="#3-解压软件" class="headerlink" title="3.解压软件"></a>3.解压软件</h3><p>tar zxf sendEmail-v1.56.tar.gz -C /usr/src</p>
+<h3 id="4-进入目录"><a href="#4-进入目录" class="headerlink" title="4.进入目录"></a>4.进入目录</h3><p>cd /usr/src/sendEmail-v1.56</p>
+<h3 id="5-复制文件，并设置权限"><a href="#5-复制文件，并设置权限" class="headerlink" title="5.复制文件，并设置权限"></a>5.复制文件，并设置权限</h3><p>cp -a sendEmail /usr/local/bin<br>chmod +x /usr/local/bin/sendEmail</p>
+<h3 id="6-安装组件"><a href="#6-安装组件" class="headerlink" title="6.安装组件"></a>6.安装组件</h3><p>yum install perl-Net-SSLeay perl-IO-Socket-SSL -y</p>
+<h3 id="7-请求实例："><a href="#7-请求实例：" class="headerlink" title="7.请求实例："></a>7.请求实例：</h3><p>/usr/local/bin/sendEmail -f woyinzf@163.com -t 962087325@qq.com -s smtp.163.com -u “我是邮件主题===测试sendEmail5” -o message-content-type=html -o message-charset=UTF-8 -xu woyinzf@163.com -xp woshihaisong428 -m “333我是邮件内容测试1444” -l /var/log/sendMyEmail.log -o tls=no</p>
+<p>/usr/local/bin/sendEmail -f 18511462056@189.cn -t 962087325@qq.com -s smtp.189.cn -u “我是邮件主题===测试sendEmail5” -o message-content-type=html -o message-charset=UTF-8 -xu 18511462056@189.cn -xp song18511462056 -m “333我是邮件内容测试1444” -l /var/log/sendMyEmail.log -o tls=no</p>
+<h3 id="遇到问题："><a href="#遇到问题：" class="headerlink" title="遇到问题："></a>遇到问题：</h3><p>发送正文乱码</p>
+<h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><p>1.当前crt的属性是否设置 utf-8<br>2.参考下面</p>
+<h3 id="sendEmail乱码解决"><a href="#sendEmail乱码解决" class="headerlink" title="sendEmail乱码解决"></a>sendEmail乱码解决</h3><p>1.测试一下中文发送，有的已经支持iso-8859-1编码，但大部分邮箱还是不支持，建议修改</p>
+<p>1<br>2<br>[root@localhost objects]# /usr/local/bin/sendEmail -f 123@163.com -t 456@foxmail.com -u “test” -m “世界你好！”<br>Jul 12 11:18:24 localhost sendEmail[15873]: Email was sent successfully!</p>
+<p>2.修改编码为utf-8</p>
+<p>1<br>vi /usr/local/bin/sendEmail</p>
+<p>把”message-charset” 修改为 utf-8</p>
+<p>1<br>2<br>3<br>4<br>5</p>
+<p>######以上省略N行######<br>    “message-format”       =&gt; ‘normal’,                            ## If “raw” is specified the message is sent unmodified<br>    “message-charset”      =&gt; ‘iso-8859-1’,                        ## Message character-set<br>    “message-content-type” =&gt; ‘auto’,                              ## auto, text, html or an actual string to put into the content-type header.</p>
+<p>######以下省略N行######</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Zabbix/">Zabbix</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/2.zabbix-centos7.3下sendmail配置邮件发送/" data-title="2.centos7.3下sendmail配置邮件发送 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  2浏览器对base64二进制图片展示</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/"  title="2.linux-配置ssh互信master免密码登陆slave">
+ <strong>NEXT:</strong><br/> 
+ <span>2.linux-配置ssh互信master免密码登陆slave
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载软件"><span class="toc-number">2.</span> <span class="toc-text">1.下载软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建目录"><span class="toc-number">3.</span> <span class="toc-text">2.创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解压软件"><span class="toc-number">4.</span> <span class="toc-text">3.解压软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-进入目录"><span class="toc-number">5.</span> <span class="toc-text">4.进入目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-复制文件，并设置权限"><span class="toc-number">6.</span> <span class="toc-text">5.复制文件，并设置权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-安装组件"><span class="toc-number">7.</span> <span class="toc-text">6.安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-请求实例："><span class="toc-number">8.</span> <span class="toc-text">7.请求实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到问题："><span class="toc-number">9.</span> <span class="toc-text">遇到问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决："><span class="toc-number">10.</span> <span class="toc-text">解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sendEmail乱码解决"><span class="toc-number">11.</span> <span class="toc-text">sendEmail乱码解决</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>26</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
