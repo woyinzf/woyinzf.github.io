@@ -1,0 +1,336 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>3.linux-自己实践过的nfs配置 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理注意点：
+
+按照以下步骤执行
+软件在服务端和客户端都要执行安装。
+把两个服务器的防火墙给关闭。重启后生效开启： chkconfig iptables on关闭： chkconfig iptables off 或者 /sbin/chkconfig –">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/3.linux-自己实践过的nfs配置/" title="3.linux-自己实践过的nfs配置" itemprop="url">3.linux-自己实践过的nfs配置</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T23:18:58.361Z" itemprop="dateModified">2018-01-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol>
+		</div>
+		
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>注意点：</p>
+<ol>
+<li>按照以下步骤执行</li>
+<li>软件在服务端和客户端都要执行安装。</li>
+<li>把两个服务器的防火墙给关闭。<br>重启后生效<br>开启： chkconfig iptables on<br>关闭： chkconfig iptables off 或者 /sbin/chkconfig –level 2345 iptables off</li>
+<li>执行挂在。</li>
+<li>客户端 设置成自动挂在需要设置如下：<br>   vi /etc/fstab<br>  最好一行添加如下：<br>  192.168.136.130:/usr/local/data                                            /usr/local/data                   nfs                    defaults      0   0<br> 解释上行：NFS服务器IP地址:服务器共享出的分区挂载点      本机挂载点        文件类型<ol>
+<li>服务端开机启动：两个服务<br>执行以下命令：<br>chkconfig rpcbindon<br> chkconfig nfs on<br>答题步骤：</li>
+</ol>
+</li>
+</ol>
+<p> centos6.2 配置nfs服务器 2012-06-21 16:32:47<br>分类： 系统运维</p>
+<p>一，应用环境介绍：<br>    服务器端–&gt;操作系统（centos6.2）–&gt;IP地址（10.168.2.248）<br>    客户端–&gt;操作系统（centos6.2）–&gt;IP地址（10.168.2.249<br>二，NFS相关软件的安装：<br>[root@youxia122 ~]# yum -y install portmap nfs<em><br>三，服务器端配置：<br>        1，创建共享的目录：<br>      [root@youxia121 data]# mkidr /usr/local/data/<br>        2，修改NFS配置文件：<br>      [root@youxia121 data]# vi /etc/exports<br>       /usr/local/data/ 192.168.0.122(rw,no_root_squash,no_all_squash,sync)<br>       注：  ip地址：是子服务器的地址，可以是一个区间。（192.168.0.0/122）<br>配置文件说明：/usr/local/data/ 为共享的目录，使用绝路径。对192.168.0.122<br>(rw,no_root_squash,no_all_squash,sync) 为客户端的地址及权限，地址可以是一个网段，一个IP地址或者是一个域名，域<br>名支持通配符，如：</em>.youxia.com，地址与权限中间没有空格，权限说明：<br>rw：read-write，可读写；<br>ro：read-only，只读；<br>sync：文件同时写入硬盘和内存；<br>async：文件暂存于内存，而不是直接写入内存；<br>no_root_squash：NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，也拥有root权限。显然开<br>启这项是不安全的。<br>root_squash：NFS客户端连接服务端时如果使用的是root的话，那么对服务端分享的目录来说，拥有匿名用户权限，通常他将<br>使用nobody或nfsnobody身份；<br>all_squash：不论NFS客户端连接服务端时使用什么用户，对服务端分享的目录来说都是拥有匿名用户权限；<br>anonuid：匿名用户的UID值，通常是nobody或nfsnobody，可以在此处自行设定；<br>anongid：匿名用户的GID值。<br>四，启动NFS服务器并进行测试：<br>1，启动NFS服务器：<br>[root@youxia121 data]# service portmap start   – 如果不能执行，可以执行这句： service rpcbind start<br>启动 portmap：[确定]<br>[root@youxia121 data]# service nfs start<br>启动 NFS 服务： [确定]<br>关掉 NFS 配额：[确定]<br>启动 NFS 守护进程：[确定]<br>启动 NFS mountd：[确定]<br>2，在客户端进行测试：<br>创建需要挂载的目录：<br>[root@youxia122 local]# mkdir /usr/local/data/<br>执行挂载命令：<br>[root@youxia122 local]# mount -t nfs 192.168.136.130:/usr/local/data /usr/local/data  -o proto=tcp -o nolock   – 如果 两机器都重启过了，再执行这句话是很快可以执行成功的。</p>
+<p>在客户端创建一个测试文件并进行检查：<br>[root@youxia122 ~]# cd /usr/local/data/<br>[root@youxia122 data]# echo “this is a test” &gt;&gt; /usr/local/data/hehehe<br>[root@youxia122 data]# ll -h<br>总计 8.0K<br>-rw-r–r– 1 root root 15 02-23 16:47 hehehe<br>在服务器端检查：<br>[root@youxia121 usr]# ll -h /usr/local/data/<br>总计 8.0K<br>-rw-r–r– 1 root root 15 02-23 16:47 heheh<br>五，我在配置中遇到的问题：<br>1，在启动NFS服务器的时候遇到的一个问题如下，原因在于NFS配置文件中地址与权限中间多了一个空格，去掉空格重新启动即可：<br>[root@youxia121 local]# service nfs restart<br>关闭 NFS mountd：[确定]<br>关闭 NFS 守护进程：[确定]<br>关闭 NFS 服务： [确定]<br>启动 NFS 服务： exportfs: No options for /usr/local/data/ 192.168.0.122: suggest 192.168.0.122(sync) to avoid warning<br>exportfs: No host name given with /usr/local/data (rw,no_root_squash,no_all_squash,sync), suggest *(rw,no_root_squash,no_all_squash,sync) to avoid warning<br>[确定]<br>关掉 NFS 配额：[确定]<br>启动 NFS 守护进程：[确定]<br>启动 NFS mountd：[确定]<br>2，客户端在挂载的时候遇到的一个问题如下，可能是网络不太稳定，NFS默认是用UDP协议，换成TCP协议即可：<br>[root@youxia122 local]# mount -t nfs 192.168.0.121:/usr/local/data /usr/local/data<br>mount.nfs: Input/output error<br>解决方法：mount -t nfs 192.168.136.130:/usr/local/data /usr/local/data  -o proto=tcp -o nolockEN</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Linux/">Linux</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/3.linux-自己实践过的nfs配置/" data-title="3.linux-自己实践过的nfs配置 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/4.html-鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法/" title="4.鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  4.鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/3.html-实现密码框禁止拷贝/"  title="3.html-实现密码框禁止拷贝">
+ <strong>NEXT:</strong><br/> 
+ <span>3.html-实现密码框禁止拷贝
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>21</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

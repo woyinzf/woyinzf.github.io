@@ -4,10 +4,16 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>woyinzf</title>
+    <title>1.Jackson解析首字母大写的json字符串 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="解决方法有两种
+第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写比如{“Name”:”nomouse”,”Age”:12}，定义相应的bean为：
+public class User {public String Name;
+public int Age;}
+但是第一种方法">
     
     
     
@@ -63,15 +69,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/01/20/编写注意点/" title="" itemprop="url"></a>
+      <a href="/2015/01/14/1.java-Jackson解析首字母大写的json字符串/" title="1.Jackson解析首字母大写的json字符串" itemprop="url">1.Jackson解析首字母大写的json字符串</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-01-20T15:02:49.741Z" itemprop="datePublished">2018-01-20</time>
-    更新日期:<time datetime="2018-01-20T15:02:49.741Z" itemprop="dateModified">2018-01-20</time>
+    <time datetime="2015-01-14T13:31:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T14:55:14.455Z" itemprop="dateModified">2018-01-20</time>
     
   </p>
 </header>
@@ -80,19 +86,42 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写"><span class="toc-number">1.</span> <span class="toc-text">第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二种：在属性上添加注解"><span class="toc-number">2.</span> <span class="toc-text">第二种：在属性上添加注解</span></a></li></ol>
 		</div>
 		
-		  
+		<p>解决方法有两种</p>
+<h3 id="第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写"><a href="#第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写" class="headerlink" title="第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写"></a>第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写</h3><p>比如{“Name”:”nomouse”,”Age”:12}，定义相应的bean为：</p>
+<p>public class User {<br>public String Name;</p>
+<p>public int Age;<br>}</p>
+<p>但是第一种方法不符合Java的命名规范，总觉的很别扭，所以可以用第二种方法</p>
+<h3 id="第二种：在属性上添加注解"><a href="#第二种：在属性上添加注解" class="headerlink" title="第二种：在属性上添加注解"></a>第二种：在属性上添加注解</h3><p>import com.fasterxml.jackson.annotation.JsonProperty;<br>public class User {</p>
+<p>@JsonProperty(value = “Name”)<br>private String name;</p>
+<p>@JsonProperty(value = “Age”)<br>private int age;<br>}</p>
+<p>pom.xml 导入：</p>
+<dependency><br>   <groupid>com.fasterxml.jackson.core</groupid><br>   <artifactid>jackson-databind</artifactid><br>   <version>2.8.0</version><br></dependency>
+
+<dependency><br>   <groupid>org.codehaus.jackson</groupid><br>   <artifactid>jackson-mapper-asl</artifactid><br>   <version>1.9.13</version><br></dependency>
+
+  
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/01/20/编写注意点/" data-title="woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/1.java-Jackson解析首字母大写的json字符串/" data-title="1.Jackson解析首字母大写的json字符串 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -101,14 +130,14 @@
 	
 <nav class="article-nav clearfix">
  
-
-<div class="next">
-<a href="/2018/01/19/hello-world/"  title="">
- <strong>NEXT:</strong><br/> 
- <span>(no title)
-</span>
+ <div class="prev" >
+ <a href="/2015/01/14/2.java-编写注意点/" title="2.java 编写注意点">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  2.java 编写注意点</span>
 </a>
 </div>
+
 
 </nav>
 
@@ -118,7 +147,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写"><span class="toc-number">1.</span> <span class="toc-text">第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二种：在属性上添加注解"><span class="toc-number">2.</span> <span class="toc-text">第二种：在属性上添加注解</span></a></li></ol>
   </div>
 
 <div id="asidepart">

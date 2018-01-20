@@ -4,10 +4,17 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>woyinzf</title>
+    <title>2浏览器对base64二进制图片展示 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码页面    
+
+
+
+
+js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get”,    dataType: “json”,    async:”false”,    url: “/DemoSite/signa">
     
     
     
@@ -63,15 +70,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/01/20/编写注意点/" title="" itemprop="url"></a>
+      <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示" itemprop="url">2浏览器对base64二进制图片展示</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-01-20T15:02:49.741Z" itemprop="datePublished">2018-01-20</time>
-    更新日期:<time datetime="2018-01-20T15:02:49.741Z" itemprop="dateModified">2018-01-20</time>
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T22:57:01.534Z" itemprop="dateModified">2018-01-21</time>
     
   </p>
 </header>
@@ -80,19 +87,35 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面"><span class="toc-number">3.</span> <span class="toc-text">页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js处理"><span class="toc-number">4.</span> <span class="toc-text">js处理</span></a></li></ol>
 		</div>
 		
-		  
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><h3 id="页面"><a href="#页面" class="headerlink" title="页面"></a>页面</h3><div id="dignatureQrcode" style="display: none"><br>    <img id="qrCode" src="" width="300px"><br></div>
+
+
+
+
+<h3 id="js处理"><a href="#js处理" class="headerlink" title="js处理"></a>js处理</h3><p>// 调用 生成文件签名的二维码接口<br>$.ajax({<br>    type: “get”,<br>    dataType: “json”,<br>    async:”false”,<br>    url: “/DemoSite/signature/createSignatureQrcode/“,<br>    success: function (data) {<br>        var requestId = data.requestId;<br>        var qrcode = data.qrcode;<br>        qrcode = “data:image/png;base64,”+qrcode;<br>        $(“#qrCode”).attr(“src”,qrcode);<br>    }<br>});</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Html/">Html</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/01/20/编写注意点/" data-title="woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/2.html-浏览器对base64二进制图片展示/" data-title="2浏览器对base64二进制图片展示 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -101,11 +124,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  2.linux-配置ssh互信master免密码登陆slave</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2018/01/19/hello-world/"  title="">
+<a href="/2015/01/14/1.linux-实用的linux命令/"  title="1.实用的linux命令">
  <strong>NEXT:</strong><br/> 
- <span>(no title)
+ <span>1.实用的linux命令
 </span>
 </a>
 </div>
@@ -118,7 +149,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#页面"><span class="toc-number">3.</span> <span class="toc-text">页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js处理"><span class="toc-number">4.</span> <span class="toc-text">js处理</span></a></li></ol>
   </div>
 
 <div id="asidepart">

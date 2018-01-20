@@ -4,10 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>woyinzf</title>
+    <title>4.java逐行读取txt，放入list中 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理直接上Java 代码import java.io.BufferedReader;import java.io.BufferedWriter;import java.io.File;import java.io.FileInputStream;imp">
     
     
     
@@ -63,15 +65,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/01/20/编写注意点/" title="" itemprop="url"></a>
+      <a href="/2015/01/14/4.java-逐行读取txt，放入list中/" title="4.java逐行读取txt，放入list中" itemprop="url">4.java逐行读取txt，放入list中</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-01-20T15:02:49.741Z" itemprop="datePublished">2018-01-20</time>
-    更新日期:<time datetime="2018-01-20T15:02:49.741Z" itemprop="dateModified">2018-01-20</time>
+    <time datetime="2015-01-14T13:34:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T22:15:41.886Z" itemprop="dateModified">2018-01-21</time>
     
   </p>
 </header>
@@ -80,19 +82,75 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接上Java-代码"><span class="toc-number">2.</span> <span class="toc-text">直接上Java 代码</span></a></li></ol>
 		</div>
 		
-		  
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="直接上Java-代码"><a href="#直接上Java-代码" class="headerlink" title="直接上Java 代码"></a>直接上Java 代码</h3><p>import java.io.BufferedReader;import java.io.BufferedWriter;import java.io.File;import java.io.FileInputStream;import java.io.FileWriter;import java.io.IOException;import java.io.InputStreamReader;import java.util.ArrayList;import<br> java.util.List;</p>
+<p>import org.junit.Before;import<br> org.junit.Test;</p>
+<p>import com.vianet.blockchain.web3j.support.constants.CommonConstant;import com.vianet.blockchain.web3j.support.constants.InitConfig;import com.vianet.blockchain.web3j.support.exceptions.Web3jException;</p>
+<p>public static void main(String[] string) throws Exception {<br>        try {<br>            long start = System.currentTimeMillis();</p>
+<pre><code>        List&lt;String&gt; moneyAccountList = new ArrayList&lt;String&gt;();
+        List&lt;String&gt; noMoneyAccountsList = new ArrayList&lt;String&gt;();
+
+        BufferedReader moneyAccountBr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(&quot;/Users/yinzf/Documents/contransaction-properties/1000_money_accounts.txt&quot;)), &quot;UTF-8&quot;));
+        BufferedReader noMoneyAccountBr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(&quot;/Users/yinzf/Documents/contransaction-properties/1000_no_money_accounts.txt&quot;)), &quot;UTF-8&quot;));
+        String moneylineTxt = null;
+        String noMoneylineTxt = null;
+
+        while ((moneylineTxt = moneyAccountBr.readLine()) != null) {
+            moneyAccountList.add(moneylineTxt.substring(moneylineTxt.indexOf(&quot;accountAddress=&quot;)+15, moneylineTxt.length()));
+        }
+
+        while ((noMoneylineTxt = noMoneyAccountBr.readLine()) != null) {
+            noMoneyAccountsList.add(noMoneylineTxt.substring(noMoneylineTxt.indexOf(&quot;accountAddress=&quot;)+15, noMoneylineTxt.length()));
+        }
+        moneyAccountBr.close();
+        noMoneyAccountBr.close();
+
+        System.out.println(&quot;moneyAccounts长度：&quot;+moneyAccountList.size()+ &quot; moneyAccounts的第一个元素：&quot;+moneyAccountList.get(0) +&quot; moneyAccounts最后一个元素:&quot;+moneyAccountList.get(999));
+        System.out.println(&quot;noMoneyAccounts长度：&quot;+noMoneyAccountsList.size()+ &quot; noMoneyAccounts的第一个元素：&quot;+noMoneyAccountsList.get(0) +&quot; noMoneyAccounts最后一个元素:&quot;+noMoneyAccountsList.get(999));
+
+        //处理并发转账
+        for(int i=0;i&lt;moneyAccountList.size()/2;i++){
+            long start1 = System.currentTimeMillis();
+            AccountRouter accountRouter = new AccountRouter();
+            String transactionHash = accountRouter.transferEther(moneyAccountList.get(i), &quot;8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92&quot;,
+                    noMoneyAccountsList.get(i), &quot;0.0001&quot;);
+            System.out.printf(&quot;++++++第&quot;+i+&quot;   次transactionHash: [%s]\n&quot;, transactionHash);
+            long end1 = System.currentTimeMillis();
+            System.out.printf(&quot;======第&quot;+i+&quot;   次充值耗时：[%s]s\n&quot;, (end1 - start1)/1000);
+        }
+
+        long end = System.currentTimeMillis();
+        long out = (end - start) / 1000;
+
+        System.out.printf(&quot;~~~~~~~~~~~~~处理1000个用户转换总耗时：[%s]s \n&quot;, out);
+
+    } catch (Exception e) {
+        System.out.println(&quot;errorMsg=&quot; + e.getMessage());
+        e.printStackTrace();
+    }
+}
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/01/20/编写注意点/" data-title="woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/4.java-逐行读取txt，放入list中/" data-title="4.java逐行读取txt，放入list中 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -101,11 +159,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/01/14/6.java-Jersey+Spring+Maven实现RESTful的服务端开发和客户端调用/" title="6.Jersey+Spring+Maven 实现RESTful的服务端开发和客户端调用">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  6.Jersey+Spring+Maven 实现RESTful的服务端开发和客户端调用</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2018/01/19/hello-world/"  title="">
+<a href="/2015/01/14/7.java-slf4j的使用步骤/"  title="7.slf4j的使用步骤">
  <strong>NEXT:</strong><br/> 
- <span>(no title)
+ <span>7.slf4j的使用步骤
 </span>
 </a>
 </div>
@@ -118,7 +184,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接上Java-代码"><span class="toc-number">2.</span> <span class="toc-text">直接上Java 代码</span></a></li></ol>
   </div>
 
 <div id="asidepart">

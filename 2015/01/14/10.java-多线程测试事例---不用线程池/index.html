@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>woyinzf</title>
+    <title>10.java多线程测试事例---不用线程池 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理直接上代码package com.vianet.blockchain.web3j.support.routers;
+import java.io.BufferedReader;import java.io.File;import java.io.F">
     
     
     
@@ -63,15 +66,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/01/20/编写注意点/" title="" itemprop="url"></a>
+      <a href="/2015/01/14/10.java-多线程测试事例---不用线程池/" title="10.java多线程测试事例---不用线程池" itemprop="url">10.java多线程测试事例---不用线程池</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2018-01-20T15:02:49.741Z" itemprop="datePublished">2018-01-20</time>
-    更新日期:<time datetime="2018-01-20T15:02:49.741Z" itemprop="dateModified">2018-01-20</time>
+    <time datetime="2015-01-14T13:41:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T22:38:29.447Z" itemprop="dateModified">2018-01-21</time>
     
   </p>
 </header>
@@ -80,19 +83,90 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接上代码"><span class="toc-number">2.</span> <span class="toc-text">直接上代码</span></a></li></ol>
 		</div>
 		
-		  
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="直接上代码"><a href="#直接上代码" class="headerlink" title="直接上代码"></a>直接上代码</h3><p>package com.vianet.blockchain.web3j.support.routers;</p>
+<p>import java.io.BufferedReader;<br>import java.io.File;<br>import java.io.FileInputStream;<br>import java.io.InputStreamReader;<br>import java.util.ArrayList;<br>import java.util.List;<br>import java.util.concurrent.Executor;<br>import java.util.concurrent.ExecutorService;<br>import java.util.concurrent.Executors;</p>
+<p>public class Performance {</p>
+<p>//    private final static ExecutorService service = Executors.newFixedThreadPool(100);//启用100个线程</p>
+<pre><code>/**
+ * 通过线程池，实现 100个有钱账户，给100个没钱账户转账；    实现 500个有钱账户，给500个没钱账户转账；    实现 1000个有钱账户，给1000个没钱账户转账；
+ * @param string
+ * @throws Exception
+ */
+public static void main(String[] string) throws Exception {
+    try {
+        List&lt;String&gt; moneyAccountList = new ArrayList&lt;String&gt;();
+        List&lt;String&gt; noMoneyAccountsList = new ArrayList&lt;String&gt;();
+
+        BufferedReader moneyAccountBr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(&quot;/Users/yinzf/Documents/contransaction-properties/92/1000_money_accounts.txt&quot;)), &quot;UTF-8&quot;));
+        BufferedReader noMoneyAccountBr = new BufferedReader(new InputStreamReader(new FileInputStream(new File(&quot;/Users/yinzf/Documents/contransaction-properties/92/1000_no_money_accounts.txt&quot;)), &quot;UTF-8&quot;));
+        String moneylineTxt = null;
+        String noMoneylineTxt = null;
+
+        while ((moneylineTxt = moneyAccountBr.readLine()) != null) {
+            moneyAccountList.add(moneylineTxt.substring(moneylineTxt.indexOf(&quot;accountAddress=&quot;)+15, moneylineTxt.length()));
+        }
+
+        while ((noMoneylineTxt = noMoneyAccountBr.readLine()) != null) {
+            noMoneyAccountsList.add(noMoneylineTxt.substring(noMoneylineTxt.indexOf(&quot;accountAddress=&quot;)+15, noMoneylineTxt.length()));
+        }
+        moneyAccountBr.close();
+        noMoneyAccountBr.close();
+
+        System.out.println(&quot;moneyAccounts长度：&quot;+moneyAccountList.size()+ &quot; moneyAccounts的第一个元素：&quot;+moneyAccountList.get(0) );
+        System.out.println(&quot;noMoneyAccounts长度：&quot;+noMoneyAccountsList.size()+ &quot; noMoneyAccounts的第一个元素：&quot;+noMoneyAccountsList.get(0) );
+
+        int xianzhi = moneyAccountList.size();//设置转账为 100，500，100 个
+        System.out.println(&quot;实际转账用户是：&quot;+xianzhi+&quot; 个&quot;);
+        System.out.println(&quot;当前时间：===========  &quot;+System.currentTimeMillis());
+        for (int i=0;i&lt;xianzhi;i++) {
+            final int j = i; // 关键是这一句代码，将 i 转化为 j，这样j 还是final类型的参与线程
+            new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println(j);
+
+                        long start1 = System.currentTimeMillis();
+                        AccountRouter accountRouter = new AccountRouter();
+                        String transactionHash = accountRouter.transferEther(moneyAccountList.get(j), &quot;8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92&quot;,
+                                noMoneyAccountsList.get(j), &quot;0.000001&quot;);
+                        System.out.printf(&quot;++++++第&quot;+j+&quot;   次transactionHash: [%s]\n&quot;, transactionHash);
+                        long end1 = System.currentTimeMillis();
+                        System.out.printf(&quot;======第&quot;+j+&quot;   次充值耗时：[%s]s\n&quot;, (end1 - start1)/1000);
+                        System.out.println(&quot;当前转账后时间：  &quot;+System.currentTimeMillis());
+
+                    } catch (Exception e) {
+
+                    }
+                }
+            }.start();
+        }
+        //关闭线程
+</code></pre><p>//            service.shutdown();<br>        } catch (Exception e) {<br>            System.out.println(“errorMsg=” + e.getMessage());<br>            e.printStackTrace();<br>        }<br>    }</p>
+<p>}</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java/">Java</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2018/01/20/编写注意点/" data-title="woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/10.java-多线程测试事例---不用线程池/" data-title="10.java多线程测试事例---不用线程池 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -101,11 +175,19 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2015/01/14/11.java-并发调用（压测）/" title="11.JAVA并发调用（压测）">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  11.JAVA并发调用（压测）</span>
+</a>
+</div>
+
 
 <div class="next">
-<a href="/2018/01/19/hello-world/"  title="">
+<a href="/2015/01/14/9.java-多线程事例---使用线程池/"  title="9.java多线程---使用线程池">
  <strong>NEXT:</strong><br/> 
- <span>(no title)
+ <span>9.java多线程---使用线程池
 </span>
 </a>
 </div>
@@ -118,7 +200,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接上代码"><span class="toc-number">2.</span> <span class="toc-text">直接上代码</span></a></li></ol>
   </div>
 
 <div id="asidepart">

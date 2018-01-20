@@ -58,68 +58,61 @@
 
     </header>
     <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2018/01/20/编写注意点/" title="" itemprop="url"></a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
-    </p>
-  <p class="article-time">
-    <time datetime="2018-01-20T15:02:49.741Z" itemprop="datePublished">2018-01-20</time>
-    更新日期:<time datetime="2018-01-20T15:02:49.741Z" itemprop="dateModified">2018-01-20</time>
-    
-  </p>
-</header>
-	<div class="article-content">
-		
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-		</div>
-		
-		  
-	</div>
-		<footer class="article-footer clearfix">
+      <div id="main">
 
-
-
-
-<div class="article-share" id="share">
-
-  <div data-url="http://yoursite.com/2018/01/20/编写注意点/" data-title="woyinzf" data-tsina="" class="share clearfix">
-  </div>
-
-</div>
-</footer>   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
-
-<div class="next">
-<a href="/2018/01/19/hello-world/"  title="">
- <strong>NEXT:</strong><br/> 
- <span>(no title)
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <section class="post" itemscope itemprop="blogPost">
   
-  </div>
+    <a href="/2015/01/14/3.java-处理字符串的时候—replaceall注意点/" title="3.java 处理字符串的时候—replaceall注意点" itemprop="url">
+  
+    <h1 itemprop="name">3.java 处理字符串的时候—replaceall注意点</h1>
+    
+     
+           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理例如：
+String jsonString2 = “{resultMsg:Apply IDPS successfully created!,dssServicePwd:123456,serviceId:IDPS002,dssPI</p>
+        
+    
+    <time datetime="2015-01-14T13:33:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.java-编写注意点/" title="2.java 编写注意点" itemprop="url">
+  
+    <h1 itemprop="name">2.java 编写注意点</h1>
+    
+     
+           <p itemprop="description" >1.验证 是否数字的时候String userId = Objects.toString(jsonUser.get(“userId”), “”);if(StringUtils.isNotBlank(userId)) {userInfo.setUserId(new Integer(</p>
+        
+    
+    <time datetime="2015-01-14T13:32:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.java-Jackson解析首字母大写的json字符串/" title="1.Jackson解析首字母大写的json字符串" itemprop="url">
+  
+    <h1 itemprop="name">1.Jackson解析首字母大写的json字符串</h1>
+    
+     
+           <p itemprop="description" >解决方法有两种
+第一种：直接将bean对象中的属性改为public，属性名命名为首字母大写比如{“Name”:”nomouse”,”Age”:12}，定义相应的bean为：
+public class User {public String Name;
+public int Age</p>
+        
+    
+    <time datetime="2015-01-14T13:31:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -207,8 +200,6 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
@@ -228,66 +219,6 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
 
 
 
@@ -295,4 +226,4 @@ $(document).ready(function(){
 
 
   </body>
-</html>
+ </html>

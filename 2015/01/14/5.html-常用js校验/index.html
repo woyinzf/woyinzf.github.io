@@ -1,0 +1,364 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>5.html-常用js校验 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码惯用正则表达式大全，手机、电话、邮箱、身份证(最严格的验证)、IP地址、网址、日期等，一般前台js验证，来这里就够了.
+常用正则表达式大全，手机、电话、邮箱、身份证(最严格的验证)、IP地址、网址、日期等，一般前台js验证，来这里就够了…　　">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/5.html-常用js校验/" title="5.html-常用js校验" itemprop="url">5.html-常用js校验</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:05:42.000Z" itemprop="datePublished">2015-01-14</time>
+    更新日期:<time datetime="2018-01-20T23:06:05.098Z" itemprop="dateModified">2018-01-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+		</div>
+		
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>惯用正则表达式大全，手机、电话、邮箱、身份证(最严格的验证)、IP地址、网址、日期等，一般前台js验证，来这里就够了.</p>
+<p>常用正则表达式大全，手机、电话、邮箱、身份证(最严格的验证)、IP地址、网址、日期等，一般前台js验证，来这里就够了…<br>　　<script type="text/javascript"><br>/*</p>
+<ul>
+<li>手机号码格式</li>
+<li>只允许以13、15、18开头的号码</li>
+<li>如：13012345678、15929224344、18201234676<br><em>/<br>var regMobile=/^1[3,5,8]\d{9}$/;<br>　　/</em></li>
+<li>固定电话号码格式</li>
+<li>因为固定电话格式比较复杂，情况比较多，主要验证了以下类型</li>
+<li>如：010-12345678、0912-1234567、(010)-12345678、(0912)1234567、(010)12345678、(0912)-1234567、01012345678、09121234567<br><em>/<br>var regPhone=/^(^0\d{2}- \d{8}$)|(^0\d{3}- \d{7}$)|(^(0\d{2})- \d{8}$)|(^(0\d{3})- \d{7}$)$/;<br>　　/</em></li>
+<li>Email邮箱</li>
+<li>如：、、wan<em>gwu999@SEED.NET.TW<br>*/<br>var regEmail=/^([a-zA-Z0-9]+[</em>|-|.] )<em>[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|-|.] )</em>[a-zA-Z0-9]+(.[a-zA-Z]{2,3})+$/;<br>　　/*</li>
+<li>身份证15位编码规则：dddddd yymmdd xx p</li>
+<li>dddddd：6位地区编码</li>
+<li>yymmdd: 出生年(两位年)月日，如：910215</li>
+<li>xx: 顺序编码，系统产生，无法确定</li>
+<li>p: 性别，奇数为男，偶数为女</li>
+<li></li>
+<li>身份证18位编码规则：dddddd yyyymmdd xxx y</li>
+<li>dddddd：6位地区编码</li>
+<li>yyyymmdd: 出生年(四位年)月日，如：19910215</li>
+<li>xxx：顺序编码，系统产生，无法确定，奇数为男，偶数为女</li>
+<li>y: 校验码，该位数值可通过前17位计算获得</li>
+<li></li>
+<li>前17位号码加权因子为 Wi = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ]</li>
+<li>验证位 Y = [ 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ]</li>
+<li>如果验证码恰好是10，为了保证身份证是十八位，那么第十八位将用X来代替</li>
+<li>校验位计算公式：Y_P = mod( ∑(Ai×Wi),11 )</li>
+<li>i为身份证号码1…17 位; Y_P为校验码Y所在校验码数组位置<br><em>/<br>function validateIdCard(idCard){<br>//15位和18位身份证号码的正则表达式<br>var regIdCard=/^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;<br>　　//如果通过该验证，说明身份证格式正确，但准确性还需计算<br>if(regIdCard.test(idCard)){<br>if(idCard.length==18){<br>var idCardWi=new Array( 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ); //将前17位加权因子保存在数组里<br>var idCardY=new Array( 1, 0, 10, 9, 8, 7, 6, 5, 4, 3, 2 ); //这是除以11后，可能产生的11位余数、验证码，也保存成数组<br>var idCardWiSum=0; //用来保存前17位各自乖以加权因子后的总和<br>for(var i=0;i&lt;17;i++){<br> idCardWiSum+=idCard.substring(i,i+1)</em>idCardWi[i];<br>}<br>　　var idCardMod=idCardWiSum%11;//计算出校验码所在数组的位置<br>var idCardLast=idCard.substring(17);//得到最后一位身份证号码<br>　　//如果等于2，则说明校验码是10，身份证号码最后一位应该是X<br>if(idCardMod==2){<br> if(idCardLast==”X”||idCardLast==”x”){<br>  alert(“恭喜通过验证啦！”);<br> }else{<br>  alert(“身份证号码错误！”);<br> }<br>}else{<br> //用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码<br> if(idCardLast==idCardY[idCardMod]){<br>  alert(“恭喜通过验证啦！”);<br> }else{<br>  alert(“身份证号码错误！”);<br> }<br>}<br>}<br>}else{<br>alert(“身份证格式不正确!”);<br>}<br>}<br>　　/*</li>
+<li>只能为正整数<br><em>/<br>var regNum=/^\d+$/;<br>　　/</em></li>
+<li>邮政编码<br><em>/<br>var regPostCode=/^\d{6}$/;<br>　　/</em></li>
+<li>用户名</li>
+<li>只能是字母数字下划线，并且以字母开头(5-16位)<br><em>/<br>var regUserName=/^[a-zA-Z]\w{4,15}$/;<br>　　/</em></li>
+<li>IP地址</li>
+<li>如：192.168.1.102<br><em>/<br>var regIP=/^((([1-9]\d )|(1\d{2})|(2[0-4]\d)|(25[0-5])).){3}(([1-9]\d )|(1\d{2})|(2[0-4]\d)|(25[0-5]))$/;<br>　　/</em></li>
+<li>只能是中文汉字<br><em>/<br>var regChineseChar=/^[\u4e00-\u9fa5]+$/;<br>　　/</em></li>
+<li>网址</li>
+<li>只允许http、https、ftp这三种</li>
+<li>如：<br><em>/<br>var regWeb=/^(([hH][tT]{2}[pP][sS] )|([fF][tT][pP]))\:\/\/[wW]{3}.[\w-]+.\w{2,4}(\/.</em>) $/;<br>　　/*</li>
+<li>日期格式验证</li>
+<li>因为日期格式比较多，主要验证了以下类型</li>
+<li>2012-05-14、2012/05/6、2012.5.14、20120528<br><em>/<br>var regDate=/^[1-9]\d{3}([-|\/|.]) ((0\d)|([1-9])|(1[0-2]))\1(([0|1|2]\d)|([1-9])|3[0-1])$/;<br>　　/</em></li>
+<li>调用以上正则表达式的方法</li>
+<li>以验证电话号码格式为例<br>*/<br>function onCheck(tel){<br>if(regMobile.test(tel)){<br>alert(“恭喜通过验证啦！”);</li>
+</ul>
+<p>}else{<br> alert(“格式不正确！”);<br>}<br>}<br></script></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Html/">Html</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/5.html-常用js校验/" data-title="5.html-常用js校验 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/6.html-ie兼容性问题/" title="6.html-ie兼容性问题">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  6.html-ie兼容性问题</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/4.linux-centos下crontab的用法-定时任务/"  title="4.linux-centos下crontab的用法-定时任">
+ <strong>NEXT:</strong><br/> 
+ <span>4.linux-centos下crontab的用法-定时任
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>21</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
