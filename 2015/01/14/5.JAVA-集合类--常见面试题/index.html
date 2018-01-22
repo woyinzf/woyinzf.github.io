@@ -9,7 +9,7 @@
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理JAVA 集合类–常见面试题看了一些所谓大公司的Java面试问题，发现对于JAVA集合类的使用都比较看重似的，而自己在这方面还真的是所真甚少，抽空也学习学习吧。java.util包中就包含了一系列重要的集合类，而对于集合类，主要需要掌握的就是它的内">
+    <meta name="description" content="JAVA 集合类–常见面试题看了一些所谓大公司的Java面试问题，发现对于JAVA集合类的使用都比较看重似的，而自己在这方面还真的是所真甚少，抽空也学习学习吧。java.util包中就包含了一系列重要的集合类，而对于集合类，主要需要掌握的就是它的内部结构，以及遍历集合的迭代模式。接口：Collect">
     
     
     
@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T13:35:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-20T22:19:52.720Z" itemprop="dateModified">2018-01-21</time>
+    Updated:<time datetime="2018-01-22T08:45:34.109Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -82,10 +82,10 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-集合类–常见面试题"><span class="toc-number">2.</span> <span class="toc-text">JAVA 集合类–常见面试题</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-集合类–常见面试题"><span class="toc-number">1.</span> <span class="toc-text">JAVA 集合类–常见面试题</span></a></li></ol>
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="JAVA-集合类–常见面试题"><a href="#JAVA-集合类–常见面试题" class="headerlink" title="JAVA 集合类–常见面试题"></a>JAVA 集合类–常见面试题</h3><p>看了一些所谓大公司的Java面试问题，发现对于JAVA集合类的使用都比较看重似的，而自己在这方面还真的是所真甚少，抽空也学习学习吧。<br>java.util包中就包含了一系列重要的集合类，而对于集合类，主要需要掌握的就是它的内部结构，以及遍历集合的迭代模式。<br>接口：Collection<br>所有集合类的根类型，主要的一个接口方法：boolean add(Ojbect c)</p>
+		<h3 id="JAVA-集合类–常见面试题"><a href="#JAVA-集合类–常见面试题" class="headerlink" title="JAVA 集合类–常见面试题"></a>JAVA 集合类–常见面试题</h3><p>看了一些所谓大公司的Java面试问题，发现对于JAVA集合类的使用都比较看重似的，而自己在这方面还真的是所真甚少，抽空也学习学习吧。<br>java.util包中就包含了一系列重要的集合类，而对于集合类，主要需要掌握的就是它的内部结构，以及遍历集合的迭代模式。<br>接口：Collection<br>所有集合类的根类型，主要的一个接口方法：boolean add(Ojbect c)</p>
 <p>虽返回的是boolean，但不是表示添加成功与否，因为Collection规定：一个集合拒绝添加这个元素，无论什么原因，都必须抛出异常，这个返回值表示的意义是add()执行后，集合的内容是否改了（就是元素有无数量、位置等变化）。类似的addAll，remove，removeAll，remainAll也是一样的。<br>用Iterator模式实现遍历集合<br>Collection有一个重要的方法：iterator()，返回一个Iterator（迭代子），用于遍历集合的所有元素。Iterator模式可以把访问逻辑从不同类的集合类中抽象出来，从而避免向客户端暴露集合的内部结构。<br>for(Iterator it = c.iterator(); it.hasNext();) {…}<br>不需要维护遍历集合的“指针”，所有的内部状态都有Iterator来维护，而这个Iterator由集合类通过工厂方法生成。<br>每一种集合类返回的Iterator具体类型可能不同，但它们都实现了Iterator接口，因此，我们不需要关心到底是哪种Iterator，它只需要获得这个Iterator接口即可，这就是接口的好处，面向对象的威力。<br>要确保遍历过程顺利完成，必须保证遍历过程中不更改集合的内容（Iterator的remove()方法除外），所以，确保遍历可靠的原则是：只在一个线程中使用这个集合，或者在多线程中对遍历代码进行同步。<br>Java Map集合类介绍<br>直接贴链接好了<br><a href="http://dev.csdn.net/article/54/54534.shtm" target="_blank" rel="noopener">http://dev.csdn.net/article/54/54534.shtm</a><br>线性表，链表，哈希表是常用的数据结构，在进行Java开发时，JDK已经为我们提供了一系列相应的类来实现基本的数据结构。这些类均在java.util包中。本文试图通过简单的描述，向读者阐述各个类的作用以及如何正确使用这些类。<br>Collection</p>
 <p>├List</p>
 <p>│├LinkedList</p>
@@ -195,7 +195,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-集合类–常见面试题"><span class="toc-number">2.</span> <span class="toc-text">JAVA 集合类–常见面试题</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA-集合类–常见面试题"><span class="toc-number">1.</span> <span class="toc-text">JAVA 集合类–常见面试题</span></a></li></ol>
   </div>
 
 <div id="asidepart">

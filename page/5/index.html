@@ -62,16 +62,30 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
+    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
   
-    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
+    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
     
      
-           <p itemprop="description" >环境：Centos7.2
-1.安装docker。    yum install docker    systemctl start docker    /     service start docker
-2.安装Docker-Compose
-执行下面的命令安装compose 
-</p>
+           <p itemprop="description" >上代码执行一下步骤：
+yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
+  
+    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
+    
+     
+           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
+client：105
+server：103
++++</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -96,15 +110,15 @@ bin/kafka-server-start.sh config/server.proper</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
+    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
   
-    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
+    <h1 itemprop="name">1.docker常用命令</h1>
     
      
-           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
-client：105
-server：103
-+++</p>
+           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
+运行后退出：docker run centos /bin/echo ‘hello world’
+查看运行的及停止运行的容器docker ps -a
+运行一个容器（命名，i打开，t打开终</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -134,6 +148,22 @@ vi 操作 和 find 和远程copy （scp）操作
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
+  
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    
+     
+           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2015/01/14/1.mysql-设置远程访问/" title="1.mysql-设置远程访问" itemprop="url">
   
     <h1 itemprop="name">1.mysql-设置远程访问</h1>
@@ -146,6 +176,24 @@ Sql代码
 
 mysql&amp;gt; use mysql;  
 mysql&amp;gt; GRANT ALL ON . TO </p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
+  
+    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
+    
+     
+           <p itemprop="description" >环境：Centos7.2
+1.安装docker。    yum install docker    systemctl start docker    /     service start docker
+2.安装Docker-Compose
+执行下面的命令安装compose 
+</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -169,59 +217,12 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
-  
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
-    
-     
-           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
-  
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
-    
-     
-           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，查看值</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
-  
-    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
-    
-     
-           <p itemprop="description" >上代码执行一下步骤：
-yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/01/14/1.html-超链接target处理/" title="1.超链接加上garget处理" itemprop="url">
   
     <h1 itemprop="name">1.超链接加上garget处理</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码在上可以设置 target属性：
+           <p itemprop="description" >在上可以设置 target属性：
 例如：  让新页面在指定的iframe里进行显示。</p>
         
     

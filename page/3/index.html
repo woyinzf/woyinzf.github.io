@@ -62,39 +62,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.mac的常用技巧/" title="1.mac 的常用技巧" itemprop="url">
+    <a href="/2015/01/14/1.oracle-数据库表空间权限的实现步骤/" title="1.Oracle 数据库表空间权限的实现步骤" itemprop="url">
   
-    <h1 itemprop="name">1.mac 的常用技巧</h1>
+    <h1 itemprop="name">1.Oracle 数据库表空间权限的实现步骤</h1>
     
      
-           <p itemprop="description" >1.彻底清理浏览器缓存：
-清理火狐，谷歌的浏览器缓存————可以从 safel 浏览器里进行彻底清除。
-2.mac 查询文件
-which solcjs
-3.mac 下设置vi/vim 高亮
-步骤1：
-  cp /usr/share/vim/vimrc ~/.vimrc
-  先复制</p>
-        
-    
-    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.go-基础知识/" title="1.go基础知识" itemprop="url">
-  
-    <h1 itemprop="name">1.go基础知识</h1>
-    
-     
-           <p itemprop="description" >1.=========
-
-切片、映射和通道，使用make
-数组、结构体和所有的值类型，使用new 
-
-2.第一个 iota 等于 0 ； 以后每个都要累加。
-3.gofmt –w program.go 会格式化该源文件的代码然后将格式化后的代码覆盖原始内容（如果不加参数 -w 则</p>
+           <p itemprop="description" >1.创建数据库实例，通过工具 database  configuration assistant .set oracle_sid=ORCL  修改当前的服务名；然后在plsql登录 用户名 sysdba  密码 sysdba  服务名为新建的那个库的。连接为 SYSDBA2cre</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -119,15 +92,16 @@ which solcjs
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/3.mysql-存储过程的用法/" title="3.mysql-存储过程的用法" itemprop="url">
+    <a href="/2015/01/14/1.etcd-初始ETCD/" title="1.初始ETCD" itemprop="url">
   
-    <h1 itemprop="name">3.mysql-存储过程的用法</h1>
+    <h1 itemprop="name">1.初始ETCD</h1>
     
      
-           <p itemprop="description" >–查看存储过程
-SHOW CREATE PROCEDURE clearData;
-–创建一个几天创建一个   日表月表的存储过程
-CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str va</p>
+           <p itemprop="description" >本机跑起etcd的步骤：
+1.安装 go 1.9
+2.执行如下步骤：
+git clone https://github.com/coreos/etcd.git$ cd etcd$ ./build
+GOPATH should be set$ echo $GOPATH/Users/e</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -154,12 +128,30 @@ CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str va</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/3.docker-在centos7下卸载步骤/" title="3.docker在centos7下卸载步骤" itemprop="url">
+    <a href="/2015/01/14/3.mysql-存储过程的用法/" title="3.mysql-存储过程的用法" itemprop="url">
   
-    <h1 itemprop="name">3.docker在centos7下卸载步骤</h1>
+    <h1 itemprop="name">3.mysql-存储过程的用法</h1>
     
      
-           <p itemprop="description" >1.查看：[root@localhost ~]# yum list installed | grep dockerRepodata is over2 weeks old. Install yum-cron? Or run: yum makecache fastdocker.x86</p>
+           <p itemprop="description" >–查看存储过程
+SHOW CREATE PROCEDURE clearData;
+–创建一个几天创建一个   日表月表的存储过程
+CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str va</p>
+        
+    
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/3.html-实现密码框禁止拷贝/" title="3.html-实现密码框禁止拷贝" itemprop="url">
+  
+    <h1 itemprop="name">3.html-实现密码框禁止拷贝</h1>
+    
+     
+           <p itemprop="description" >input 里面加上：
+onpaste=”return false” onselectstart=”return false”</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -183,13 +175,12 @@ CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str va</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/3.html-实现密码框禁止拷贝/" title="3.html-实现密码框禁止拷贝" itemprop="url">
+    <a href="/2015/01/14/3.docker-在centos7下卸载步骤/" title="3.docker在centos7下卸载步骤" itemprop="url">
   
-    <h1 itemprop="name">3.html-实现密码框禁止拷贝</h1>
+    <h1 itemprop="name">3.docker在centos7下卸载步骤</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码input 里面加上：
-onpaste=”return false” onselectstart=”return false”</p>
+           <p itemprop="description" >1.查看：[root@localhost ~]# yum list installed | grep dockerRepodata is over2 weeks old. Install yum-cron? Or run: yum makecache fastdocker.x86</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -217,13 +208,14 @@ onpaste=”return false” onselectstart=”return false”</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.go-ethereum-mac下安装go-ethereum/" title="2.mac下 安装go-ethereum" itemprop="url">
+    <a href="/2015/01/14/2.redis的启动停止/" title="2.redis 的启动停止操作" itemprop="url">
   
-    <h1 itemprop="name">2.mac下 安装go-ethereum</h1>
+    <h1 itemprop="name">2.redis 的启动停止操作</h1>
     
      
-           <p itemprop="description" >上代码A.前期准备：http://m.2cto.com/kf/201612/573010.html
-（1）安装python2.7，mac在终端中直接使用以下命令：brew install python（注意python是小写）（2）安装solc（solidity语言编译器），在终</p>
+           <p itemprop="description" >#启动redissrc/redis-server &amp;amp;
+#关闭redissrc/redis-cli shutdown
+通过 端口号kill，停用 redis的命令（端口，或者名字都可以） ps -ef | grep 36873 | awk ‘{print $2}’ | xa</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>

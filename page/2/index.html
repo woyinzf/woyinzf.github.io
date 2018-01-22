@@ -62,12 +62,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/5.docker-错误信息整理/" title="5.docker错误信息整理" itemprop="url">
+    <a href="/2015/01/14/5.go-ethereum-修改创世区块默认不出块的方式/" title="5.go-ethereum-修改创世区块默认不出块的方式" itemprop="url">
   
-    <h1 itemprop="name">5.docker错误信息整理</h1>
+    <h1 itemprop="name">5.go-ethereum-修改创世区块默认不出块的方式</h1>
     
      
-           <p itemprop="description" >1、Error response from daemon: Cannot start container 7cb4a74f9ef7bcc6fa659e3473aac10bd430c18aac43b4f6633920742e159284: iptables failed: ipta</p>
+           <p itemprop="description" >创世区块文件（xxx.json）,出块难度较高（diffculty）</p>
         
     
     <time datetime="2015-01-14T15:05:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -76,14 +76,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.oracle-dba常用命令/" title="2.oracle-dba常用命令" itemprop="url">
+    <a href="/2015/01/14/5.docker-错误信息整理/" title="5.docker错误信息整理" itemprop="url">
   
-    <h1 itemprop="name">2.oracle-dba常用命令</h1>
+    <h1 itemprop="name">5.docker错误信息整理</h1>
     
      
-           <p itemprop="description" >–表删除后，闪回回来：
-  flashback table PRODUCT_PROP to before drop;
-delete 后的恢复：    第一步：      create table product_sku _bak1 (  select  from product_</p>
+           <p itemprop="description" >1、Error response from daemon: Cannot start container 7cb4a74f9ef7bcc6fa659e3473aac10bd430c18aac43b4f6633920742e159284: iptables failed: ipta</p>
         
     
     <time datetime="2015-01-14T15:05:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -127,9 +125,12 @@ delete 后的恢复：    第一步：      create table product_sku _bak1 (  se
     <h1 itemprop="name">4.鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码问题：鼠标聚焦到TextBox输入框时，按回车键刷新页面原因：当 中只有一个TextBox输入框时，当输入完成后，按回车键会自动提交，便刷新了页面
+           <p itemprop="description" >问题：鼠标聚焦到TextBox输入框时，按回车键刷新页面原因：当 中只有一个TextBox输入框时，当输入完成后，按回车键会自动提交，便刷新了页面
 解决方法：1、处理form在form中添加事件 …….
-2、增加一个隐藏的</p>
+2、增加一个隐藏的输入框,认为改变单个输入框
+
+
+3、屏蔽回车键1&amp;gt; </p>
         
     
     <time datetime="2015-01-14T15:04:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -168,16 +169,19 @@ delete 后的恢复：    第一步：      create table product_sku _bak1 (  se
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.etcd-初始ETCD/" title="1.初始ETCD" itemprop="url">
+    <a href="/2015/01/14/1.mac的常用技巧/" title="1.mac 的常用技巧" itemprop="url">
   
-    <h1 itemprop="name">1.初始ETCD</h1>
+    <h1 itemprop="name">1.mac 的常用技巧</h1>
     
      
-           <p itemprop="description" >本机跑起etcd的步骤：
-1.安装 go 1.9
-2.执行如下步骤：
-git clone https://github.com/coreos/etcd.git$ cd etcd$ ./build
-GOPATH should be set$ echo $GOPATH/Users/e</p>
+           <p itemprop="description" >1.彻底清理浏览器缓存：
+清理火狐，谷歌的浏览器缓存————可以从 safel 浏览器里进行彻底清除。
+2.mac 查询文件
+which solcjs
+3.mac 下设置vi/vim 高亮
+步骤1：
+  cp /usr/share/vim/vimrc ~/.vimrc
+  先复制</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -186,12 +190,18 @@ GOPATH should be set$ echo $GOPATH/Users/e</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.oracle-数据库表空间权限的实现步骤/" title="1.Oracle 数据库表空间权限的实现步骤" itemprop="url">
+    <a href="/2015/01/14/1.go-基础知识/" title="1.go基础知识" itemprop="url">
   
-    <h1 itemprop="name">1.Oracle 数据库表空间权限的实现步骤</h1>
+    <h1 itemprop="name">1.go基础知识</h1>
     
      
-           <p itemprop="description" >1.创建数据库实例，通过工具 database  configuration assistant .set oracle_sid=ORCL  修改当前的服务名；然后在plsql登录 用户名 sysdba  密码 sysdba  服务名为新建的那个库的。连接为 SYSDBA2cre</p>
+           <p itemprop="description" >1.=========
+
+切片、映射和通道，使用make
+数组、结构体和所有的值类型，使用new 
+
+2.第一个 iota 等于 0 ； 以后每个都要累加。
+3.gofmt –w program.go 会格式化该源文件的代码然后将格式化后的代码覆盖原始内容（如果不加参数 -w 则</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>

@@ -62,16 +62,12 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.go-环境变量配置/" title="2.go环境变量配置" itemprop="url">
+    <a href="/2015/01/14/2.rabbitmq-常用命令/" title="2.rabbitmq常用命令" itemprop="url">
   
-    <h1 itemprop="name">2.go环境变量配置</h1>
+    <h1 itemprop="name">2.rabbitmq常用命令</h1>
     
      
-           <p itemprop="description" >1.要设置的：sudo chmod -R 777 /usr/local/go
-2.编辑：vi ~/.bash_profile 
-export GOROOT=/usr/local/go
-#binexport GOBIN=$GOROOT/bin 
-#work pathexport G</p>
+           <p itemprop="description" >启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看队列中的数据(**)/usr/lib/rabbitmq/b</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -80,17 +76,13 @@ export GOROOT=/usr/local/go
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示" itemprop="url">
+    <a href="/2015/01/14/2.go-ethereum-mac下安装go-ethereum/" title="2.mac下 安装go-ethereum" itemprop="url">
   
-    <h1 itemprop="name">2浏览器对base64二进制图片展示</h1>
+    <h1 itemprop="name">2.mac下 安装go-ethereum</h1>
     
      
-           <p itemprop="description" >页面    
-
-
-
-
-js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get”,    dataType: “json”,    async:”false”,    url: “/DemoSite/signature/createSignatur</p>
+           <p itemprop="description" >上代码A.前期准备：http://m.2cto.com/kf/201612/573010.html
+（1）安装python2.7，mac在终端中直接使用以下命令：brew install python（注意python是小写）（2）安装solc（solidity语言编译器），在终</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -104,9 +96,10 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
     <h1 itemprop="name">2.centos7.3下sendmail配置邮件发送</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理当前测试环境是：172.16.192.90
+           <p itemprop="description" >当前测试环境是：172.16.192.90
 1.下载软件wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz
-2.创建目录m</p>
+2.创建目录mkdir /usr/local/bin
+3.解压软件</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -115,12 +108,13 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.rabbitmq-常用命令/" title="2.rabbitmq常用命令" itemprop="url">
+    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
   
-    <h1 itemprop="name">2.rabbitmq常用命令</h1>
+    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
     
      
-           <p itemprop="description" >启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看队列中的数据(**)/usr/lib/rabbitmq/b</p>
+           <p itemprop="description" >master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
+scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -163,13 +157,16 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
+    <a href="/2015/01/14/2.go-环境变量配置/" title="2.go环境变量配置" itemprop="url">
   
-    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
+    <h1 itemprop="name">2.go环境变量配置</h1>
     
      
-           <p itemprop="description" >master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
-scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
+           <p itemprop="description" >1.要设置的：sudo chmod -R 777 /usr/local/go
+2.编辑：vi ~/.bash_profile 
+export GOROOT=/usr/local/go
+#binexport GOBIN=$GOROOT/bin 
+#work pathexport G</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -178,14 +175,17 @@ scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.redis的启动停止/" title="2.redis 的启动停止操作" itemprop="url">
+    <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示" itemprop="url">
   
-    <h1 itemprop="name">2.redis 的启动停止操作</h1>
+    <h1 itemprop="name">2浏览器对base64二进制图片展示</h1>
     
      
-           <p itemprop="description" >#启动redissrc/redis-server &amp;amp;
-#关闭redissrc/redis-cli shutdown
-通过 端口号kill，停用 redis的命令（端口，或者名字都可以） ps -ef | grep 36873 | awk ‘{print $2}’ | xa</p>
+           <p itemprop="description" >页面    
+
+
+
+
+js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get”,    dataType: “json”,    async:”false”,    url: “/DemoSite/signature/createSignatur</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -210,15 +210,14 @@ wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd 
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
+    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
   
-    <h1 itemprop="name">1.docker常用命令</h1>
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
     
      
-           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
-运行后退出：docker run centos /bin/echo ‘hello world’
-查看运行的及停止运行的容器docker ps -a
-运行一个容器（命名，i打开，t打开终</p>
+           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，查看值</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
