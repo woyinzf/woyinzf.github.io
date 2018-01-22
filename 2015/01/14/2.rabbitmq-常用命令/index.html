@@ -9,7 +9,7 @@
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看队列中的数据(**)">
+    <meta name="description" content="启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看队列中的数据(**)/usr/lib/rabbitmq/bin/rabbitm">
     
     
     
@@ -36,7 +36,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -49,7 +49,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -73,7 +73,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-22T02:15:16.223Z" itemprop="dateModified">2018-01-22</time>
+    更新日期:<time datetime="2018-01-22T08:16:09.245Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -81,11 +81,11 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+			<strong class="toc-title">文章目录</strong>
+		
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>启动服务<br>/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;<br>Ø 停止服务<br>/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;<br>Ø 查看队列中的数据(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_queues<br>Ø 查看节点状态(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl status<br>Ø 查看分布式节点状态<br>/usr/lib/rabbitmq/bin/rabbitmqctl cluster_status<br>Ø 停止应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl stop_app<br>Ø 启动应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl start_app<br>Ø 重设应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl reset<br>Ø 加入分布式节点<br>/usr/lib/rabbitmq/bin/rabbitmqctl cluster 节点标识<br>Ø 具体参考:<br>/usr/lib/rabbitmq/bin/rabbitmqctl –help<br>Ø 查看未确认消息：(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_queues -p / name<br>Ø 看到两个临时队列的名称<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_bindings<br>Ø 看交换器<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_exchanges<br>Ø 查看用户列表<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_users</p>
+		<p>启动服务<br>/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;<br>Ø 停止服务<br>/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;<br>Ø 查看队列中的数据(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_queues<br>Ø 查看节点状态(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl status<br>Ø 查看分布式节点状态<br>/usr/lib/rabbitmq/bin/rabbitmqctl cluster_status<br>Ø 停止应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl stop_app<br>Ø 启动应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl start_app<br>Ø 重设应用<br>/usr/lib/rabbitmq/bin/rabbitmqctl reset<br>Ø 加入分布式节点<br>/usr/lib/rabbitmq/bin/rabbitmqctl cluster 节点标识<br>Ø 具体参考:<br>/usr/lib/rabbitmq/bin/rabbitmqctl –help<br>Ø 查看未确认消息：(<strong><strong>**</strong></strong>)<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_queues -p / name<br>Ø 看到两个临时队列的名称<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_bindings<br>Ø 看交换器<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_exchanges<br>Ø 查看用户列表<br>/usr/lib/rabbitmq/bin/rabbitmqctl list_users</p>
 <p>监控容器上跑着的日志<br>docker logs -ft cfb511ab4e45</p>
 <p>查看近期10条容器内应用的日志<br>docker logs –tail -100ft cfb511ab4e45</p>
   
@@ -117,18 +117,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/2.zabbix-centos7.3下sendmail配置邮件发送/" title="2.centos7.3下sendmail配置邮件发送">
+ <a href="/2015/01/14/2.go-ethereum-mac下安装go-ethereum/" title="2.mac下 安装go-ethereum">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  2.centos7.3下sendmail配置邮件发送</span>
+  2.mac下 安装go-ethereum</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/2.k8s-常用操作/"  title="2.k8s的常用操作">
+<a href="/2015/01/14/2.go-环境变量配置/"  title="2.go环境变量配置">
  <strong>NEXT:</strong><br/> 
- <span>2.k8s的常用操作
+ <span>2.go环境变量配置
 </span>
 </a>
 </div>
@@ -137,20 +137,20 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+  <strong class="toc-title">文章目录</strong>
+  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
@@ -161,7 +161,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -205,7 +205,7 @@
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

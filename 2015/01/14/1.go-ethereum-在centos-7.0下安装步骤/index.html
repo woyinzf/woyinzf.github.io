@@ -9,8 +9,8 @@
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码执行一下步骤：
-yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbu">
+    <meta name="description" content="上代码执行一下步骤：
+yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth              ">
     
     
     
@@ -37,7 +37,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -50,7 +50,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -74,7 +74,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-22T02:31:43.851Z" itemprop="dateModified">2018-01-22</time>
+    更新日期:<time datetime="2018-01-22T08:13:43.260Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -82,11 +82,11 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-需要安装git："><span class="toc-number">3.</span> <span class="toc-text">1.需要安装git：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载代码可能遇到一下问题：需要如下操作："><span class="toc-number">4.</span> <span class="toc-text">2.下载代码可能遇到一下问题：需要如下操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行-下载"><span class="toc-number">5.</span> <span class="toc-text">3.执行 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-执行-make-geth-可能报错需要-在go1-7下执行"><span class="toc-number">6.</span> <span class="toc-text">4.执行 make geth 可能报错需要 在go1.7下执行</span></a></li></ol>
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">1.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-需要安装git："><span class="toc-number">2.</span> <span class="toc-text">1.需要安装git：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载代码可能遇到一下问题：需要如下操作："><span class="toc-number">3.</span> <span class="toc-text">2.下载代码可能遇到一下问题：需要如下操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行-下载"><span class="toc-number">4.</span> <span class="toc-text">3.执行 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-执行-make-geth-可能报错需要-在go1-7下执行"><span class="toc-number">5.</span> <span class="toc-text">4.执行 make geth 可能报错需要 在go1.7下执行</span></a></li></ol>
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>执行一下步骤：</p>
+		<h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>执行一下步骤：</p>
 <p>yum install golang<br>yum install gmp-devel<br>git clone <a href="https://github.com/ethereum/go-ethereum" target="_blank" rel="noopener">https://github.com/ethereum/go-ethereum</a><br>cd go-ethereum<br>make geth<br>build/bin/geth                </p>
 <p>如果是新机器，可能遇到一下问题：</p>
 <h3 id="1-需要安装git："><a href="#1-需要安装git：" class="headerlink" title="1.需要安装git："></a>1.需要安装git：</h3><p>yum install git</p>
@@ -139,18 +139,18 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/1.redis的安装配置/" title="1.redis的安装配置">
+ <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  1.redis的安装配置</span>
+  1.kafka 常用命令</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/"  title="4.docker Harbor的搭建及客户端的使用">
+<a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/"  title="1.zookeeper 常用操作">
  <strong>NEXT:</strong><br/> 
- <span>4.docker Harbor的搭建及客户端的使用
+ <span>1.zookeeper 常用操作
 </span>
 </a>
 </div>
@@ -159,20 +159,20 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-需要安装git："><span class="toc-number">3.</span> <span class="toc-text">1.需要安装git：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载代码可能遇到一下问题：需要如下操作："><span class="toc-number">4.</span> <span class="toc-text">2.下载代码可能遇到一下问题：需要如下操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行-下载"><span class="toc-number">5.</span> <span class="toc-text">3.执行 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-执行-make-geth-可能报错需要-在go1-7下执行"><span class="toc-number">6.</span> <span class="toc-text">4.执行 make geth 可能报错需要 在go1.7下执行</span></a></li></ol>
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">1.</span> <span class="toc-text">上代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-需要安装git："><span class="toc-number">2.</span> <span class="toc-text">1.需要安装git：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-下载代码可能遇到一下问题：需要如下操作："><span class="toc-number">3.</span> <span class="toc-text">2.下载代码可能遇到一下问题：需要如下操作：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行-下载"><span class="toc-number">4.</span> <span class="toc-text">3.执行 下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-执行-make-geth-可能报错需要-在go1-7下执行"><span class="toc-number">5.</span> <span class="toc-text">4.执行 make geth 可能报错需要 在go1.7下执行</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
@@ -183,7 +183,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -227,7 +227,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

@@ -34,7 +34,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -47,7 +47,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -80,6 +80,38 @@ export GOROOT=/usr/local/go
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/14/2.zabbix-centos7.3下sendmail配置邮件发送/" title="2.centos7.3下sendmail配置邮件发送" itemprop="url">
+  
+    <h1 itemprop="name">2.centos7.3下sendmail配置邮件发送</h1>
+    
+     
+           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理当前测试环境是：172.16.192.90
+1.下载软件wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz
+2.创建目录m</p>
+        
+    
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.redis的启动停止/" title="2.redis 的启动停止操作" itemprop="url">
+  
+    <h1 itemprop="name">2.redis 的启动停止操作</h1>
+    
+     
+           <p itemprop="description" >#启动redissrc/redis-server &amp;amp;
+#关闭redissrc/redis-cli shutdown
+通过 端口号kill，停用 redis的命令（端口，或者名字都可以） ps -ef | grep 36873 | awk ‘{print $2}’ | xa</p>
+        
+    
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示" itemprop="url">
   
     <h1 itemprop="name">2浏览器对base64二进制图片展示</h1>
@@ -99,54 +131,6 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.zabbix-centos7.3下sendmail配置邮件发送/" title="2.centos7.3下sendmail配置邮件发送" itemprop="url">
-  
-    <h1 itemprop="name">2.centos7.3下sendmail配置邮件发送</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理当前测试环境是：172.16.192.90
-1.下载软件wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz
-2.创建目录m</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.rabbitmq-常用命令/" title="2.rabbitmq常用命令" itemprop="url">
-  
-    <h1 itemprop="name">2.rabbitmq常用命令</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.k8s-常用操作/" title="2.k8s的常用操作" itemprop="url">
-  
-    <h1 itemprop="name">2.k8s的常用操作</h1>
-    
-     
-           <p itemprop="description" >1.显示所有podkubectl get pod
-2.显示所有rckubectl get rc
-3.显示所有servicekubectl get service
-4.删除rckubectl delete rc rcname
-5.删除servicekubectl delete se</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/01/14/3.go-通过linux脚本创建go工程/" title="3.go通过linux脚本创建go工程" itemprop="url">
   
     <h1 itemprop="name">3.go通过linux脚本创建go工程</h1>
@@ -155,21 +139,6 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
            <p itemprop="description" >#!/bin/bash
 #————————————–
 Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1.0Useage : ./mk_go_pro.sh./mk_go_</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
-  
-    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
-scp ~/.ssh/id_rsa.p</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -197,14 +166,47 @@ scp ~/.ssh/id_rsa.p</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.redis的安装配置/" title="1.redis的安装配置" itemprop="url">
+    <a href="/2015/01/14/2.k8s-常用操作/" title="2.k8s的常用操作" itemprop="url">
   
-    <h1 itemprop="name">1.redis的安装配置</h1>
+    <h1 itemprop="name">2.k8s的常用操作</h1>
     
      
-           <p itemprop="description" >CentOS 6.5 下安装 Redis 2.8.7
-wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd redis-stablemake
-前面3步应该没有问题，主要的问题</p>
+           <p itemprop="description" >1.显示所有podkubectl get pod
+2.显示所有rckubectl get rc
+3.显示所有servicekubectl get service
+4.删除rckubectl delete rc rcname
+5.删除servicekubectl delete se</p>
+        
+    
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
+  
+    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
+    
+     
+           <p itemprop="description" >master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
+scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
+        
+    
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
+  
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    
+     
+           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -213,13 +215,16 @@ wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd 
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
+    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
   
-    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
+    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码执行一下步骤：
-yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereumm</p>
+           <p itemprop="description" >环境：Centos7.2
+1.安装docker。    yum install docker    systemctl start docker    /     service start docker
+2.安装Docker-Compose
+执行下面的命令安装compose 
+</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -232,15 +237,15 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
@@ -251,7 +256,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -295,7 +300,7 @@ yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

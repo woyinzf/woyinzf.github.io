@@ -34,7 +34,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -47,7 +47,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -62,32 +62,18 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
+    <a href="/2015/01/14/1.mysql-设置远程访问/" title="1.mysql-设置远程访问" itemprop="url">
   
-    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
+    <h1 itemprop="name">1.mysql-设置远程访问</h1>
     
      
-           <p itemprop="description" >环境：Centos7.2
-1.安装docker。    yum install docker    systemctl start docker    /     service start docker
-2.安装Docker-Compose
-执行下面的命令安装compose 
-</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
+           <p itemprop="description" >Mysql默认是不可以通过远程机器访问的,通过下面的配置可以开启远程访问 
+在MySQL Server端： 
+执行mysql 命令进入mysql 命令模式， 
+Sql代码  
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令" itemprop="url">
-  
-    <h1 itemprop="name">1.kafka 常用命令</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码启动服务      首先启动zookeeper服务bin/zookeeper-server-start.sh config/zookeeper.properties
-启动Kafka
-bin/kafka-server-sta</p>
+mysql&amp;gt; use mysql;  
+mysql&amp;gt; GRANT ALL ON . TO </p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -113,70 +99,13 @@ server：103
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.linux-实用的linux命令/" title="1.实用的linux命令" itemprop="url">
-  
-    <h1 itemprop="name">1.实用的linux命令</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理
-防火墙的操作（重启生效）
-
-
-开启： chkconfig iptables on关闭： chkconfig iptables off
-
-vi 操作 和 find 和远程copy （scp）操作
-
-3.更改文件创建时间touch</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.mysql-设置远程访问/" title="1.mysql-设置远程访问" itemprop="url">
-  
-    <h1 itemprop="name">1.mysql-设置远程访问</h1>
-    
-     
-           <p itemprop="description" >Mysql默认是不可以通过远程机器访问的,通过下面的配置可以开启远程访问 
-在MySQL Server端： 
-执行mysql 命令进入mysql 命令模式， 
-Sql代码  
-
-mysql&amp;gt; use mysql;  
-mysql&amp;gt; GRANT ALL ON . TO </p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/01/14/1.rabbix-docker化搭建/" title="1.Rabbix-docker 化搭建" itemprop="url">
   
     <h1 itemprop="name">1.Rabbix-docker 化搭建</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码启用容器方法1，会多一个镜像docker run -d –hostname my-rabbit –name sde-rabbit -p 8080:15672 rabbitmq:3-management
-启用容器方法2，需要</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
-  
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
-    
-     
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth diges</p>
+           <p itemprop="description" >启用容器方法1，会多一个镜像docker run -d –hostname my-rabbit –name sde-rabbit -p 8080:15672 rabbitmq:3-management
+启用容器方法2，需要进入容器，启用一个命令（下面有rabbitmq_manag</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -202,13 +131,82 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令" itemprop="url">
+  
+    <h1 itemprop="name">1.kafka 常用命令</h1>
+    
+     
+           <p itemprop="description" >上代码启动服务      首先启动zookeeper服务bin/zookeeper-server-start.sh config/zookeeper.properties
+启动Kafka
+bin/kafka-server-start.sh config/server.proper</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
+  
+    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
+    
+     
+           <p itemprop="description" >上代码执行一下步骤：
+yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
   
     <h1 itemprop="name">1.zookeeper 常用操作</h1>
     
      
-           <p itemprop="description" >处理字符串里有特殊字符的时候：注意加“[]”括号处理查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest a</p>
+           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，查看值</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.redis的安装配置/" title="1.redis的安装配置" itemprop="url">
+  
+    <h1 itemprop="name">1.redis的安装配置</h1>
+    
+     
+           <p itemprop="description" >CentOS 6.5 下安装 Redis 2.8.7
+wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd redis-stablemake
+前面3步应该没有问题，主要的问题</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.linux-实用的linux命令/" title="1.实用的linux命令" itemprop="url">
+  
+    <h1 itemprop="name">1.实用的linux命令</h1>
+    
+     
+           <p itemprop="description" >防火墙的操作（重启生效）
+
+
+开启： chkconfig iptables on关闭： chkconfig iptables off
+
+vi 操作 和 find 和远程copy （scp）操作
+
+3.更改文件创建时间touch -d “20000506 18:03:00” fil</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -236,15 +234,15 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
@@ -255,7 +253,7 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -299,7 +297,7 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>

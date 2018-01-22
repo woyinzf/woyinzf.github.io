@@ -9,8 +9,8 @@
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理Linux配置定时，使用 crontab -e 与 直接编辑 /etc/crontab 的区别
-方法1：使用命令 crontab -e 然后直接编辑定时脚本。这样执行以后，属于用户自定义的，会被写到 /var/spool/cron 目录下，生成一个">
+    <meta name="description" content="Linux配置定时，使用 crontab -e 与 直接编辑 /etc/crontab 的区别
+方法1：使用命令 crontab -e 然后直接编辑定时脚本。这样执行以后，属于用户自定义的，会被写到 /var/spool/cron 目录下，生成一个和用户名一致的文件，文件内容就是我们编辑的定时脚本。">
     
     
     
@@ -37,7 +37,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -50,7 +50,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T15:04:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-20T23:22:54.318Z" itemprop="dateModified">2018-01-21</time>
+    更新日期:<time datetime="2018-01-22T08:11:00.673Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -82,11 +82,11 @@
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#For-details-see-man-4-crontabs"><span class="toc-number"></span> <span class="toc-text">For details see man 4 crontabs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-job-definition"><span class="toc-number"></span> <span class="toc-text">Example of job definition:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—————-minute-0-59"><span class="toc-number"></span> <span class="toc-text">.—————- minute (0 - 59)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#————-hour-0-23"><span class="toc-number"></span> <span class="toc-text">|  .————- hour (0 - 23)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#———-day-of-month-1-31"><span class="toc-number"></span> <span class="toc-text">|  |  .———- day of month (1 - 31)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#——-month-1-12-OR-jan-feb-mar-apr-…"><span class="toc-number"></span> <span class="toc-text">|  |  |  .——- month (1 - 12) OR jan,feb,mar,apr …</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—-day-of-week-0-6-Sunday-0-or-7-OR-sun-mon-tue-wed-thu-fri-sat"><span class="toc-number"></span> <span class="toc-text">|  |  |  |  .—- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number"></span> <span class="toc-text">|  |  |  |  |</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#user-name-command-to-be-executed"><span class="toc-number"></span> <span class="toc-text">        * user-name command to be executed</span></a>
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#For-details-see-man-4-crontabs"><span class="toc-number">1.</span> <span class="toc-text">For details see man 4 crontabs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-job-definition"><span class="toc-number">2.</span> <span class="toc-text">Example of job definition:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—————-minute-0-59"><span class="toc-number">3.</span> <span class="toc-text">.—————- minute (0 - 59)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#————-hour-0-23"><span class="toc-number">4.</span> <span class="toc-text">|  .————- hour (0 - 23)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#———-day-of-month-1-31"><span class="toc-number">5.</span> <span class="toc-text">|  |  .———- day of month (1 - 31)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#——-month-1-12-OR-jan-feb-mar-apr-…"><span class="toc-number">6.</span> <span class="toc-text">|  |  |  .——- month (1 - 12) OR jan,feb,mar,apr …</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—-day-of-week-0-6-Sunday-0-or-7-OR-sun-mon-tue-wed-thu-fri-sat"><span class="toc-number">7.</span> <span class="toc-text">|  |  |  |  .—- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">8.</span> <span class="toc-text">|  |  |  |  |</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#user-name-command-to-be-executed"><span class="toc-number">9.</span> <span class="toc-text">        * user-name command to be executed</span></a></li></ol>
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>Linux配置定时，使用 crontab -e 与 直接编辑 /etc/crontab 的区别</p>
+		<p>Linux配置定时，使用 crontab -e 与 直接编辑 /etc/crontab 的区别</p>
 <p>方法1：<br>使用命令 crontab -e 然后直接编辑定时脚本。<br>这样执行以后，属于用户自定义的，会被写到 /var/spool/cron 目录下，生成一个和用户名一致的文件，文件内容就是我们编辑的定时脚本。<br>方法2：<br>使用命令 vi /etc/crontab 编辑定时脚本。<br>（系统级的）做系统级配置我们会直接配置 /etc/crontab<br>（用户级的）一般还是建议大家使用 crontab -e ，这样系统也会帮着检查我们配置的脚本语法。</p>
 <p>10 0 <em> </em> * /opt/soft/log/auto-del-7-days-ago-log.sh &gt;/dev/null 2&gt;&amp;1<br>（注意 /dev/null 2&gt;&amp;1 是linux 的机制问题：<br>linux操作系统中的/var/spool/clientmqueue/目录下存在大量文件。<br>原因分析：系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，而sendmail没有启动所以就产生了这些文件；<br>解决办法: 1、 将crontab里面的命令后面加上&gt; /dev/null 2&gt;&amp;1<br>）<br>—————————————————————已下是自己操作过的系统级别——————–</p>
 <p>查看是否开启状态：/etc/init.d/crond status</p>
@@ -154,9 +154,9 @@
 
 
 <div class="next">
-<a href="/2015/01/14/4.html-鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法/"  title="4.鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法">
+<a href="/2015/01/14/4.go-ethereum-geth实用函数命令/"  title="4.go-ethereum下geth使用命令">
  <strong>NEXT:</strong><br/> 
- <span>4.鼠标聚焦到TextBox输入框时，按回车键刷新页面原因及解决方法
+ <span>4.go-ethereum下geth使用命令
 </span>
 </a>
 </div>
@@ -165,20 +165,20 @@
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#For-details-see-man-4-crontabs"><span class="toc-number"></span> <span class="toc-text">For details see man 4 crontabs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-job-definition"><span class="toc-number"></span> <span class="toc-text">Example of job definition:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—————-minute-0-59"><span class="toc-number"></span> <span class="toc-text">.—————- minute (0 - 59)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#————-hour-0-23"><span class="toc-number"></span> <span class="toc-text">|  .————- hour (0 - 23)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#———-day-of-month-1-31"><span class="toc-number"></span> <span class="toc-text">|  |  .———- day of month (1 - 31)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#——-month-1-12-OR-jan-feb-mar-apr-…"><span class="toc-number"></span> <span class="toc-text">|  |  |  .——- month (1 - 12) OR jan,feb,mar,apr …</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—-day-of-week-0-6-Sunday-0-or-7-OR-sun-mon-tue-wed-thu-fri-sat"><span class="toc-number"></span> <span class="toc-text">|  |  |  |  .—- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number"></span> <span class="toc-text">|  |  |  |  |</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#user-name-command-to-be-executed"><span class="toc-number"></span> <span class="toc-text">        * user-name command to be executed</span></a>
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#For-details-see-man-4-crontabs"><span class="toc-number">1.</span> <span class="toc-text">For details see man 4 crontabs</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Example-of-job-definition"><span class="toc-number">2.</span> <span class="toc-text">Example of job definition:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—————-minute-0-59"><span class="toc-number">3.</span> <span class="toc-text">.—————- minute (0 - 59)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#————-hour-0-23"><span class="toc-number">4.</span> <span class="toc-text">|  .————- hour (0 - 23)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#———-day-of-month-1-31"><span class="toc-number">5.</span> <span class="toc-text">|  |  .———- day of month (1 - 31)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#——-month-1-12-OR-jan-feb-mar-apr-…"><span class="toc-number">6.</span> <span class="toc-text">|  |  |  .——- month (1 - 12) OR jan,feb,mar,apr …</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#—-day-of-week-0-6-Sunday-0-or-7-OR-sun-mon-tue-wed-thu-fri-sat"><span class="toc-number">7.</span> <span class="toc-text">|  |  |  |  .—- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">8.</span> <span class="toc-text">|  |  |  |  |</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#user-name-command-to-be-executed"><span class="toc-number">9.</span> <span class="toc-text">        * user-name command to be executed</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分类</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
@@ -189,7 +189,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -233,7 +233,7 @@
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
 </aside>
