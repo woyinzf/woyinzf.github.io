@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>1.通过docker 跑起 zabbix server | woyinzf</title>
+    <title>1.zookeeper 常用操作 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理跑起监控四个步骤：=======================start
-docker create -v /home/yinzf/zabbix-mysql-data –name zabbix-mysql-data mysql
-docker ru">
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin">
     
     
     
@@ -67,7 +66,7 @@ docker ru">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.通过docker 跑起 zabbix server" itemprop="url">1.通过docker 跑起 zabbix server</a>
+      <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">1.zookeeper 常用操作</a>
   </h1>
   <p class="article-author">By
     
@@ -75,7 +74,7 @@ docker ru">
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-20T23:34:59.627Z" itemprop="dateModified">2018-01-21</time>
+    Updated:<time datetime="2018-01-22T02:17:59.771Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -87,20 +86,16 @@ docker ru">
 		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li></ol>
 		</div>
 		
-		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>跑起监控四个步骤：=======================start</p>
-<p>docker create -v /home/yinzf/zabbix-mysql-data –name zabbix-mysql-data mysql</p>
-<p>docker run -d \<br>-e MYSQL_ROOT_PASSWORD=zabbix \<br>-e MYSQL_USER=zabbix \<br>-e MYSQL_DATABASE=zabbix \<br>-e MYSQL_PASSWORD=zabbix \<br>–volumes-from zabbix-mysql-data \<br>–name zabbix-mysql mysql</p>
-<p>docker run -d \<br>-p 10051:10051 \<br>–link zabbix-mysql:mysql \<br>–name zabbix-server enderson/zabbix-server</p>
-<p>docker run -d \<br>  -p 10052:80 \<br>  –link zabbix-mysql:mysql \<br>  –link zabbix-server:zbx \<br>  -e ZBX_SERVER_NAME=docker-zabbix-server \<br>  –name zabbix-web enderson/zabbix-web</p>
-<p>用户名:Admin    注A大写<br>密码：zabbix</p>
-<p>跑起监控四个步骤：=======================end</p>
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><p>查看命令：ls /<br>查看命令：ls2 /<br>删除节点命令：rmr /portal/sysconfig<br>清空节点内容：delete /portal/sysconfig</p>
+<p>给本地zk授权—–便于查看value值<br>addauth digest admin:admin</p>
+<p>赋值后，可以执行此命令，查看值：<br>get /portal/sysconfig</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Zabbix/">Zabbix</a>
+  <span></span> <a href="/tags/Zookeeper/">Zookeeper</a>
   </div>
 
 
@@ -113,7 +108,7 @@ docker ru">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" data-title="1.通过docker 跑起 zabbix server | woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" data-title="1.zookeeper 常用操作 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -123,18 +118,18 @@ docker ru">
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/1.linux-实用的linux命令/" title="1.实用的linux命令">
+ <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  1.实用的linux命令</span>
+  1.zookeeper 常用操作</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/1.html-超链接target处理/"  title="1.超链接加上garget处理">
+<a href="/2015/01/14/1.rabbix-docker化搭建/"  title="1.Rabbix-docker 化搭建">
  <strong>NEXT:</strong><br/> 
- <span>1.超链接加上garget处理
+ <span>1.Rabbix-docker 化搭建
 </span>
 </a>
 </div>
@@ -159,7 +154,7 @@ docker ru">
 	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/blog/" title="blog">blog<sup>26</sup></a></li>
+			<li><a href="/categories/blog/" title="blog">blog<sup>38</sup></a></li>
 		
 		</ul>
 </div>
@@ -172,9 +167,13 @@ docker ru">
 		
 			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
 		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
 			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
 		
 			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
 		
 			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
 		
@@ -182,7 +181,11 @@ docker ru">
 		
 			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
 		
-			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>2</sup></a></li>
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
 		
 		</ul>
 </div>

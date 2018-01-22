@@ -1,0 +1,374 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>6.伊森坦布尔 （isdanbul）搭建 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="处理字符串里有特殊字符的时候：注意加“[]”括号处理上代码参考:老胡发的：https://github.com/ethereum/EIPs/issues/650
+伊森坦布尔实现：https://github.com/getamis/go-ethereum伊森坦布尔 涉及工具1https://gith">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/6.go-ethereum-伊森坦布尔（isdanbul）搭建/" title="6.伊森坦布尔 （isdanbul）搭建" itemprop="url">6.伊森坦布尔 （isdanbul）搭建</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:06:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-22T02:50:39.329Z" itemprop="dateModified">2018-01-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+		</div>
+		
+		<h3 id="处理字符串里有特殊字符的时候：注意加“-”括号处理"><a href="#处理字符串里有特殊字符的时候：注意加“-”括号处理" class="headerlink" title="处理字符串里有特殊字符的时候：注意加“[]”括号处理"></a>处理字符串里有特殊字符的时候：注意加“[]”括号处理</h3><h3 id="上代码"><a href="#上代码" class="headerlink" title="上代码"></a>上代码</h3><p>参考:<br>老胡发的：<br><a href="https://github.com/ethereum/EIPs/issues/650" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/issues/650</a></p>
+<p>伊森坦布尔实现：<br><a href="https://github.com/getamis/go-ethereum" target="_blank" rel="noopener">https://github.com/getamis/go-ethereum</a><br>伊森坦布尔 涉及工具1<br><a href="https://github.com/getamis/Istanbul-tools" target="_blank" rel="noopener">https://github.com/getamis/Istanbul-tools</a><br>伊森坦布尔 涉及工具2<br><a href="https://github.com/urfave/cli.git" target="_blank" rel="noopener">https://github.com/urfave/cli.git</a></p>
+<p>搭建步骤：</p>
+<p>1.新建目录：/src/github.com/</p>
+<p>2.在上面目录下建立文件并下载项目</p>
+<p>mkdir ethereum<br>git clone <a href="https://github.com/getamis/go-ethereum.git" target="_blank" rel="noopener">https://github.com/getamis/go-ethereum.git</a></p>
+<p>cd ..<br>mkdir getamis<br>git clone <a href="https://github.com/getamis/istanbul-tools.git" target="_blank" rel="noopener">https://github.com/getamis/istanbul-tools.git</a></p>
+<p>cd ..<br>mkdir urfave<br>git clone <a href="https://github.com/urfave/cli.git" target="_blank" rel="noopener">https://github.com/urfave/cli.git</a></p>
+<p>3.设置环境变量：</p>
+<p>export GOPATH=/root/pbft/</p>
+<p>查看cd $GOPATH<br>如果对了，就可以了。</p>
+<p>4.执行make命令<br>cd ../getamis/istanbul-tools<br>make istanbul</p>
+<p>5.genesis.json 有poa进行出来。</p>
+<p>6.修改配置文件（eclipse生成公私钥）两处：生成创世区块中的extraData;alloc</p>
+<p>extraData是在 istanbul-tools工具下生成；config.toml里面放的是公钥地址<br>alloc是：也是公钥地址<br>build/bin/istanbul encode –config ./cmd/istanbul/example/config.toml</p>
+<p>0x0000000000000000000000000000000000000000000000000000000000000000f89af85494de587200f4a869e816f693c416c42f4a6dd0bc709431de1bd877f7ab09e8423aa93ad62bf65db1b9fb944942c021d88edc722a89eb7d17b32eeb6562a37d947bed0aa0f8253308b8783d2d117a4c213241fddbb8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0</p>
+<p>7.初始化节点目录</p>
+<p>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain1 init /root/pbft/src/github.com/ethereum/genesis.json<br>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain2 init /root/pbft/src/github.com/ethereum/genesis.json<br>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain3 init /root/pbft/src/github.com/ethereum/genesis.json<br>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain4 init /root/pbft/src/github.com/ethereum/genesis.json</p>
+<p>8.创建四个key文件<br>touch nodekey1.txt<br>touch nodekey2.txt<br>touch nodekey3.txt<br>touch nodekey4.txt</p>
+<p>9.启动节点：(启动几个 screen -S geth1)<br>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain1 –nodekey /root/pbft/src/github.com/nodekey1.txt –identity mypoa –rpc –rpcaddr 0.0.0.0 –rpcport 8546 –port 50301 –rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3 –rpccorsdomain “*” –networkid 123456 –gasprice 2000 console</p>
+<p>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain2 –nodekey /root/pbft/src/github.com/nodekey2.txt –identity mypoa –rpc –rpcaddr 0.0.0.0 –rpcport 8547 –port 50302 –rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3 –rpccorsdomain “*” –networkid 123456 –gasprice 2000 console</p>
+<p>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain3 –nodekey /root/pbft/src/github.com/nodekey3.txt –identity mypoa –rpc –rpcaddr 0.0.0.0 –rpcport 8548 –port 50303 –rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3 –rpccorsdomain “*” –networkid 123456 –gasprice 2000 console</p>
+<p>/root/pbft/src/github.com/ethereum/go-ethereum/build/bin/geth –datadir /root/pbft/datas/chain4 –nodekey /root/pbft/src/github.com/nodekey4.txt –identity mypoa –rpc –rpcaddr 0.0.0.0 –rpcport 8549 –port 50304 –rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3 –rpccorsdomain “*” –networkid 123456 –gasprice 2000 console</p>
+<p>10.每个节点导入账户，查看coinbase，开启挖矿。</p>
+<p>eth.coinbase<br>eth.mining<br>miner.start()</p>
+<p>前面账户私钥，后面是密码<br>personal.importRawKey(‘1926ac4a8eeaaea7c01bb62d711458116cc76225d6101d82b2f4b6493fe7c8e3’,’d95e508786a9fc44370f0657f360291f972542c01fa2d4387bd82abd685c221a’)</p>
+<p>personal.importRawKey(‘0ab5f8721bf2b49648efee6bda463080e79ebe6372ac45548f8a132e7f0720cd’,’d95e508786a9fc44370f0657f360291f972542c01fa2d4387bd82abd685c221a’)</p>
+<p>personal.importRawKey(‘edc4c38e8f9812ff1955fcbd2c8e855da009b50d280893797e51dfc5e32e86fd’,’d95e508786a9fc44370f0657f360291f972542c01fa2d4387bd82abd685c221a’)</p>
+<p>personal.importRawKey(‘6d7d72a343b174067fc4f02734d38a3d33d5cafcaeeb11af5ed49a2ccb9efd19’,’d95e508786a9fc44370f0657f360291f972542c01fa2d4387bd82abd685c221a’)</p>
+<p>11.查看 自己的peer地址：</p>
+<p>节点1：<br>enode://45db2bc565bc819890737ec6931b5ec710e5fa74d93a591711e1b48b8841c0a3eb5d19a0c0e1b8fe67fb9dc2f7f3b07903f9d76731fc55ae99ebc89bad58b8f2@172.16.192.105:50301</p>
+<p>节点2：<br>enode://f57f8eb162826bfb38582ca5cf8dd6421a9bdfdf36190107cd6d9799e174295030fc7aca4c7e9d66dcfd50084b4c6cefb4fea4eef5a17236ced6f72f50d38d7d@172.16.192.105:50302</p>
+<p>节点3：<br>enode://968c1aaad14c3e99a3c86f3e608b848aee467ab3d2563ccef6a2aed4f4999b25424029b9a162bd4351439598440015caa656cb3aa6074bd660c6fd75593638bc@172.16.192.105:50303</p>
+<p>节点4：<br>enode://dbf6e3438fe37c1f8c0e4153dcf9e05c8d326a310a6ab805831f81b7997c38db25c457ab622e37718cc1d9f540ad2bba7251b569c7e88c3bf180288332218a5d@172.16.192.105:50304</p>
+<p>12.每个节点添加其他三个节点的节点信息：</p>
+<p>admin.peers<br>admin.addPeer(“”)</p>
+<p>13.测试转账：</p>
+<p>新建账户<br>personal.newAccount(‘567890’)<br>解锁账户<br>personal.unlockAccount(“0x7bed0aa0f8253308b8783d2d117a4c213241fddb”,”d95e508786a9fc44370f0657f360291f972542c01fa2d4387bd82abd685c221a”)<br>转账<br>eth.sendTransaction({from:”0x7bed0aa0f8253308b8783d2d117a4c213241fddb”,to:”0x3d18fbdfe86606e21d8f72c63fb48f9496658432”,value:web3.toWei(3,”ether”)})</p>
+<p>14.挖矿后，有时候节点块数据同步延迟提示如下（需要重新停止挖矿，开启挖矿，在稍等一会就可以了）<br>Old round change </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go-Ethereum/">Go-Ethereum</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/6.go-ethereum-伊森坦布尔（isdanbul）搭建/" data-title="6.伊森坦布尔 （isdanbul）搭建 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/6.html-ie兼容性问题/" title="6.html-ie兼容性问题">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  6.html-ie兼容性问题</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/5.go-ethereum-修改创世区块默认不出块的方式/"  title="5.go-ethereum-修改创世区块默认不出块的方式">
+ <strong>NEXT:</strong><br/> 
+ <span>5.go-ethereum-修改创世区块默认不出块的方式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#处理字符串里有特殊字符的时候：注意加“-”括号处理"><span class="toc-number">1.</span> <span class="toc-text">处理字符串里有特殊字符的时候：注意加“[]”括号处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上代码"><span class="toc-number">2.</span> <span class="toc-text">上代码</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>38</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
