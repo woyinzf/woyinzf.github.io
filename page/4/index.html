@@ -147,21 +147,6 @@ js处理// 调用 生成文件签名的二维码接口$.ajax({    type: “get�
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
-  
-    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
-    
-     
-           <p itemprop="description" >master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
-scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/01/14/3.go-通过linux脚本创建go工程/" title="3.go通过linux脚本创建go工程" itemprop="url">
   
     <h1 itemprop="name">3.go通过linux脚本创建go工程</h1>
@@ -170,6 +155,21 @@ scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
            <p itemprop="description" >#!/bin/bash
 #————————————–
 Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1.0Useage : ./mk_go_pro.sh./mk_go_</p>
+        
+    
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.linux-配置ssh互信master免密码登陆slave/" title="2.linux-配置ssh互信master免密码登陆slave" itemprop="url">
+  
+    <h1 itemprop="name">2.linux-配置ssh互信master免密码登陆slave</h1>
+    
+     
+           <p itemprop="description" >master 有多种管理 slave 的方式，我们选择SSH方式 在master节点中，切换到jenkins用户 ssh-keygen -t rsa 创建秘钥对 把公钥拷贝到slave节点
+scp ~/.ssh/id_rsa.pub jenkins@slave_ip:~/.ssh</p>
         
     
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -194,14 +194,13 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
+    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
   
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
     
      
-           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，查看值</p>
+           <p itemprop="description" >上代码执行一下步骤：
+yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
