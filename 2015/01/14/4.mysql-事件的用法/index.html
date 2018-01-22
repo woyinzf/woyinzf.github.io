@@ -1,0 +1,354 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>4.mysql-事件的用法 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="–查看事件SHOW CREATE EVENT call_procedure;
+–创建一个事件CREATE DEFINER=icityusr1@% EVENT call_procedure ON SCHEDULE EVERY 1 DAY STARTS ‘2014-05-29 15:35:54’ ON ">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/4.mysql-事件的用法/" title="4.mysql-事件的用法" itemprop="url">4.mysql-事件的用法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:04:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-22T03:41:42.643Z" itemprop="dateModified">2018-01-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>–查看事件<br>SHOW CREATE EVENT call_procedure;</p>
+<p>–创建一个事件<br>CREATE DEFINER=<code>icityusr1</code>@<code>%</code> EVENT <code>call_procedure</code> ON SCHEDULE EVERY 1 DAY STARTS ‘2014-05-29 15:35:54’ ON COMPLETION PRESERVE ENABLE DO begin<br>  call createTable();</p>
+<p>end</p>
+<p>自MySQL5.1.6起，增加了一个非常有特色的功能–事件调度器(Event Scheduler)，可以用做定时执行某些特定任务（例如：删除记录、对数据进行汇总等等），来取代原先只能由操作系统的计划任务来执行的工作。更值得一提的是MYSQL的事件调度器可以精确到每秒钟执行一个任务，而操作系统的计划任务（如：Linux下的CRON或Windows下的任务计划）只能精确到每分钟执行一次。对于一些对数据实时性要求比较高的应用（例如：股票、赔率、比分等）就非常适合。<br>事件调度器有时也可称为临时触发器(temporal triggers)，因为事件调度器是基于特定时间周期触发来执行某些任务，而触发器(Triggers)是基于某个表所产生的事件触发的，区别也就在这里。<br>在使用这个功能之前必须确保event_scheduler已开启，可执行<br>SET GLOBAL event_scheduler = 1;<br>或我们可以在配置my.ini文件 中加上 event_scheduler = 1或<br>SET GLOBAL event_scheduler = ON;<br>来开启，也可以直接在启动命令加上“–event_scheduler=1”，例如：<br>mysqld … –event_scheduler=1<br>要查看当前是否已开启事件调度器，可执行如下SQL：<br>SHOW VARIABLES LIKE ‘event_scheduler’;<br>或<br>SELECT @@event_scheduler;<br>或<br>拥有 SUPER 权限的账户执行 SHOW PROCESSLIST 就可以看到这个线程了<br>5.3、定时服务配置<br>先来看一下它的语法：<br>CREATE EVENT [IF NOT EXISTS] event_name<br>    ON SCHEDULE schedule<br>    [ON COMPLETION [NOT] PRESERVE]<br>    [ENABLE | DISABLE]<br>    [COMMENT ‘comment’]<br>    DO sql_statement;<br>schedule:<br>    AT TIMESTAMP [+ INTERVAL INTERVAL]<br>| EVERY INTERVAL [STARTS TIMESTAMP] [ENDS TIMESTAMP]<br>INTERVAL:<br>    quantity {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |<br>              WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |<br>              DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}<br>5.3.1每秒插入一条记录到数据表<br>USE test;<br>CREATE TABLE aaa (timeline TIMESTAMP);<br>CREATE EVENT e_test_insert<br>ON SCHEDULE EVERY 1 SECOND<br>DO INSERT INTO test.aaa VALUES (CURRENT_TIMESTAMP);<br>等待3秒钟后，再执行查询看看：<br>mysql&gt; SELECT * FROM aaa;<br>+———————+<br>| timeline            |<br>+———————+<br>| 2007-07-18 20:44:26 |<br>| 2007-07-18 20:44:27 |<br>| 2007-07-18 20:44:28 |<br>+———————+<br>5.3.2 5秒(天)后清空test表<br>CREATE EVENT e_test<br>ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 SECOND<br>DO TRUNCATE TABLE test.aaa;<br>CREATE EVENT e_test<br>ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 5 DAY<br>DO TRUNCATE TABLE test.aaa;<br>5.3.3 2008年5月23日9点39分20秒整清空test表<br>CREATE EVENT e_test<br>ON SCHEDULE AT TIMESTAMP ‘2008-05-23 9:39:20’<br>DO TRUNCATE TABLE test.aaa;<br>这个测试有问题。还不太明白原因。<br>5.3.4 每天定时清空test表<br>CREATE EVENT e_test<br>ON SCHEDULE EVERY 1 DAY<br>DO TRUNCATE TABLE test.aaa;<br>5.3.5 5天后开启每天定时清空test表<br>CREATE EVENT e_test<br>ON SCHEDULE EVERY 1 DAY<br>STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY<br>DO TRUNCATE TABLE test.aaa;<br>这里5天也可以为0天，当时就开启清空表<br>5.3.6 每天定时清空test表，5天后停止执行<br>CREATE EVENT e_test<br>ON SCHEDULE EVERY 1 DAY<br>ENDS CURRENT_TIMESTAMP + INTERVAL 5 DAY<br>DO TRUNCATE TABLE test.aaa;<br>该设置要求天数大于1，否则报错。而且创建不成功</p>
+<p>5.3.7 5天后开启每天定时清空test表，一个月后停止执行<br>CREATE EVENT e_test<br>ON SCHEDULE EVERY 1 DAY<br>STARTS CURRENT_TIMESTAMP + INTERVAL 5 DAY<br>ENDS CURRENT_TIMESTAMP + INTERVAL 1 MONTH<br>DO TRUNCATE TABLE test.aaa;[ON COMPLETION [NOT] PRESERVE]<br>可以设置这个事件是执行一次还是持久执行，默认为NOT PRESERVE。<br>该事件会停止每隔一秒插入数据的事件，感觉这点上mysql做的还是有问题。<br>5.3.8 每天定时清空test表(只执行一次，任务完成后就终止该事件)<br>CREATE EVENT e_test<br>ON SCHEDULE EVERY 1 DAY<br>ON COMPLETION NOT PRESERVE<br>DO TRUNCATE TABLE test.aaa;<br>[ENABLE | DISABLE]可是设置该事件创建后状态是否开启或关闭，默认为ENABLE。<br>[COMMENT ‘comment’]可以给该事件加上注释。<br>5.4、定时服务日常维护测试<br>5.4.1 修改事件(ALTER EVENT)<br>ALTER EVENT event_name<br>    [ON SCHEDULE schedule]<br>    [RENAME TO new_event_name]<br>    [ON COMPLETION [NOT] PRESERVE]<br>    [COMMENT ‘comment’]<br>    [ENABLE | DISABLE]<br>    [DO sql_statement]<br>a、临时关闭事件<br>ALTER EVENT e_test DISABLE;<br>b、开启事件<br>ALTER EVENT e_test ENABLE;<br>c、将每天清空test表改为5天清空一次：<br>ALTER EVENT e_test<br>ON SCHEDULE EVERY 5 DAY;<br>d、重命名事件并加上注释<br>alter event test.new_e_test rename to e_test comment ‘e_test_cm’;<br>5.4.2 删除事件(DROP EVENT)<br>语法很简单，如下所示：<br>DROP EVENT [IF EXISTS] event_name例如删除前面创建的e_test事件<br>DROP EVENT e_test;当然前提是这个事件存在，否则会产生ERROR 1513 (HY000): Unknown event错误，因此最好加上IF EXISTS<br>DROP EVENT IF EXISTS e_test;<br>5.4.3 查看事件<br>a、查看一个event的详细信息可以用下面的视图：<br>SELECT * FROM INFORMATION_SCHEMA.EVENTS WHERE EVENT_NAME = ‘e_test_insert’   AND EVENT_SCHEMA = ‘test’\G;<br>b、简要列出所有的event：show events<br>语法：<br>SHOW EVENTS [FROM schema_name]<br>    [LIKE ‘pattern’ | WHERE expr]<br>格式化显示所有event<br>SHOW EVENTS\G<br>格式化显示test用户的event<br>show events FROM test;<br>c、查看event的创建信息<br>SHOW CREATE EVENT event_name<br>show create event test.e_test\G<br>5.5、结论<br>该特性确实非常有用，可作为定时清空数据表、监控主从服务器、汇总数据到另一张表等等，并且可以精确到每秒，实时性也可以得到保障。<br>不过如果当两个事件的针对相同的对象的时候，会出现冲突，这种情况还不明确是我理解的问题还是确实是这样，比如每秒插入和定时删除就会冲突。除了调度SQL语句之外，MYSQL的调度器也可以调度存储过程。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/4.mysql-事件的用法/" data-title="4.mysql-事件的用法 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/4.linux-centos下crontab的用法-定时任务/" title="4.linux-centos下crontab的用法-定时任">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  4.linux-centos下crontab的用法-定时任</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/1.oracle-数据库表空间权限的实现步骤/"  title="1.Oracle 数据库表空间权限的实现步骤">
+ <strong>NEXT:</strong><br/> 
+ <span>1.Oracle 数据库表空间权限的实现步骤
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Go/" title="Go">Go<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/K8s/" title="K8s">K8s<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mongodb/" title="Mongodb">Mongodb<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

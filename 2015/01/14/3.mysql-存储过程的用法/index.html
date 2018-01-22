@@ -1,0 +1,359 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>3.mysql-存储过程的用法 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="–查看存储过程
+SHOW CREATE PROCEDURE clearData;
+–创建一个几天创建一个   日表月表的存储过程
+CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str varchar(2000">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/3.mysql-存储过程的用法/" title="3.mysql-存储过程的用法" itemprop="url">3.mysql-存储过程的用法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-22T03:38:53.197Z" itemprop="dateModified">2018-01-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>–查看存储过程</p>
+<p>SHOW CREATE PROCEDURE clearData;</p>
+<p>–创建一个几天创建一个   日表月表的存储过程</p>
+<p>CREATE DEFINER=<code>icityusr1</code>@<code>%</code> PROCEDURE <code>createTable</code>()<br>begin<br>  declare sql_str varchar(20000);<br>  declare tname varchar(200);<br>  declare dataStr varchar(2000);<br>  declare i int;</p>
+<p>  set i=0;<br>  while i&lt;=7 do<br>   – 创建日表<br>  set sql_str=’ create table if not exists tableName ( MGMT_INFO_VALUE_ID  VARCHAR(60) NOT NULL,MGMT_ENTITY_ID  VARCHAR(512) DEFAULT NULL,MGMT_INFO_ID  VARCHAR(255) DEFAULT NULL,    FROM_DATE  DATETIME DEFAULT NULL,    THRU_DATE  DATETIME DEFAULT NULL,    ITEM_VALUE0  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE1  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE2  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE3  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE4  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE5  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE6  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE7  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE8  VARCHAR(255) DEFAULT NULL,    ITEM_VALUE9  VARCHAR(255) DEFAULT NULL,    ITEM_DIM0  VARCHAR(255) DEFAULT NULL,    ITEM_DIM1  VARCHAR(255) DEFAULT NULL,    ITEM_DIM2  VARCHAR(255) DEFAULT NULL,    ITEM_DIM3  VARCHAR(255) DEFAULT NULL,    ITEM_DIM4  VARCHAR(255) DEFAULT NULL,    ITEM_DIM5  VARCHAR(255) DEFAULT NULL,    ITEM_DIM6  VARCHAR(255) DEFAULT NULL,    ITEM_DIM7  VARCHAR(255) DEFAULT NULL,    ITEM_DIM8  VARCHAR(255) DEFAULT NULL,    ITEM_DIM9  VARCHAR(255) DEFAULT NULL,    STATUS_ID  VARCHAR(20) DEFAULT NULL,    PERIOD_DATE  DATE DEFAULT NULL,    PERIOD_TIME  DATE DEFAULT NULL,    MEDIATION_OBJECT_ID  VARCHAR(20) DEFAULT NULL,    MEDIATION_DATE  DATETIME DEFAULT NULL,    EVENT_LEVEL  VARCHAR(10) DEFAULT NULL,    INFO_COUNT  DECIMAL(19,2) DEFAULT NULL,    MEDIATION_DELAY  DECIMAL(19,2) DEFAULT NULL,    DATA_BASE_DELAY  DECIMAL(19,2) DEFAULT NULL,    SUM_DELAY  DECIMAL(19,2) DEFAULT NULL,    COMMENTS  VARCHAR(400) DEFAULT NULL,    INFO_VALUE_UID  VARCHAR(255) DEFAULT NULL,    LAST_UPDATED_STAMP  DATETIME DEFAULT NULL,    LAST_UPDATED_TX_STAMP  DATETIME DEFAULT NULL,    CREATED_STAMP  DATETIME DEFAULT NULL,    CREATED_TX_STAMP  DATETIME DEFAULT NULL,    VALUE_DESC  VARCHAR(255) DEFAULT NULL,    NATIVE_CODE  VARCHAR(255) DEFAULT NULL,    RESOURCE_ID  VARCHAR(20) DEFAULT NULL,    SERVICE_ID  VARCHAR(20) DEFAULT NULL,    BUSINESS_ID  VARCHAR(20) DEFAULT NULL,    PARTY_ID  VARCHAR(20) DEFAULT NULL,  FACILITY_ID  VARCHAR(20) DEFAULT NULL ) ENGINE=INNODB DEFAULT CHARSET=utf8’;<br> – set dataStr=curdate();<br>  set dataStr=date_sub(curdate(),interval -i day);<br>  set dataStr=replace(dataStr, ‘-‘,’’);<br>  if i=7 then<br>         –  创建月表<br>   set dataStr=substring(dataStr,1,length(dataStr)-2); – 精确到月 创建月表<br>  end if;</p>
+<p>   set tname=concat(‘mgmt_info<em>value</em>‘,dataStr) ;<br>   set sql_str=replace(sql_str, ‘tableName’,tname) ;<br>–   select sql_str  from dual;<br>  set @delSql = sql_str;<br>    prepare stmt from @delSql;<br>    execute stmt;<br>  select sql_str  from dual; </p>
+<p>set i=i+1;<br> end while;</p>
+<p>end   </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Mysql/">Mysql</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/3.mysql-存储过程的用法/" data-title="3.mysql-存储过程的用法 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/1.nodejs-nodejs程序docker化部署/" title="1.nodejs程序docker化部署">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  1.nodejs程序docker化部署</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/1.mac的常用技巧/"  title="1.mac 的常用技巧">
+ <strong>NEXT:</strong><br/> 
+ <span>1.mac 的常用技巧
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Go/" title="Go">Go<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/K8s/" title="K8s">K8s<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mongodb/" title="Mongodb">Mongodb<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,363 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>3.go通过linux脚本创建go工程 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="#!/bin/bash
+#————————————–
+Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1.0Useage : ./mk_go_pro.sh./mk_go_pro.sh por">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/3.go-通过linux脚本创建go工程/" title="3.go通过linux脚本创建go工程" itemprop="url">3.go通过linux脚本创建go工程</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-22T03:09:08.239Z" itemprop="dateModified">2018-01-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-mk-go-pro-sh"><span class="toc-number">1.</span> <span class="toc-text">Module : mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Author-Blair-Zhong"><span class="toc-number">2.</span> <span class="toc-text">Author : Blair Zhong</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Created-2013-07-23"><span class="toc-number">3.</span> <span class="toc-text">Created : 2013.07.23</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify"><span class="toc-number">4.</span> <span class="toc-text">Modify :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version-1-0"><span class="toc-number">5.</span> <span class="toc-text">Version : 1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useage-mk-go-pro-sh"><span class="toc-number">6.</span> <span class="toc-text">Useage : ./mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mk-go-pro-sh-porject-name"><span class="toc-number">7.</span> <span class="toc-text">./mk_go_pro.sh porject_name</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Description-创建一个go可编译的工程"><span class="toc-number">8.</span> <span class="toc-text">Description: 创建一个go可编译的工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人"><span class="toc-number">9.</span> <span class="toc-text">根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-blog-studygolang-com-2012-12-go项目的目录结构"><span class="toc-number">10.</span> <span class="toc-text">http://blog.studygolang.com/2012/12/go项目的目录结构/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认情况下运行本程序，会生成如下目录和文件"><span class="toc-number">11.</span> <span class="toc-text">默认情况下运行本程序，会生成如下目录和文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#test"><span class="toc-number">12.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin"><span class="toc-number">13.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh"><span class="toc-number">14.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg"><span class="toc-number">15.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src"><span class="toc-number">16.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config"><span class="toc-number">17.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go"><span class="toc-number">18.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test"><span class="toc-number">19.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go"><span class="toc-number">20.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-directories-3-files"><span class="toc-number">21.</span> <span class="toc-text">5 directories, 3 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其中"><span class="toc-number">22.</span> <span class="toc-text">其中:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-install-sh为安装文件，"><span class="toc-number">23.</span> <span class="toc-text">1, install.sh为安装文件，</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-config-go为test项目的配置文件"><span class="toc-number">24.</span> <span class="toc-text">2, config.go为test项目的配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-main-go这个你懂的"><span class="toc-number">25.</span> <span class="toc-text">3, main.go这个你懂的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录"><span class="toc-number">26.</span> <span class="toc-text">生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin-1"><span class="toc-number">27.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-test"><span class="toc-number">28.</span> <span class="toc-text">│   └── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh-1"><span class="toc-number">29.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg-1"><span class="toc-number">30.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-darwin-amd64"><span class="toc-number">31.</span> <span class="toc-text">│   └── darwin_amd64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-a"><span class="toc-number">32.</span> <span class="toc-text">│   └── config.a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src-1"><span class="toc-number">33.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config-1"><span class="toc-number">34.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go-1"><span class="toc-number">35.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test-1"><span class="toc-number">36.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go-1"><span class="toc-number">37.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-directories-5-files"><span class="toc-number">38.</span> <span class="toc-text">6 directories, 5 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多了两个文件"><span class="toc-number">39.</span> <span class="toc-text">多了两个文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-bin目录下的test，这个是可执行稳健"><span class="toc-number">40.</span> <span class="toc-text">1, bin目录下的test，这个是可执行稳健</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件"><span class="toc-number">41.</span> <span class="toc-text">2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#enjoy-it"><span class="toc-number">42.</span> <span class="toc-text">enjoy it!</span></a></li></ol>
+		</div>
+		
+		<p>#!/bin/bash</p>
+<p>#————————————–</p>
+<h1 id="Module-mk-go-pro-sh"><a href="#Module-mk-go-pro-sh" class="headerlink" title="Module : mk_go_pro.sh"></a>Module : mk_go_pro.sh</h1><h1 id="Author-Blair-Zhong"><a href="#Author-Blair-Zhong" class="headerlink" title="Author : Blair Zhong"></a>Author : Blair Zhong</h1><h1 id="Created-2013-07-23"><a href="#Created-2013-07-23" class="headerlink" title="Created : 2013.07.23"></a>Created : 2013.07.23</h1><h1 id="Modify"><a href="#Modify" class="headerlink" title="Modify :"></a>Modify :</h1><h1 id="Version-1-0"><a href="#Version-1-0" class="headerlink" title="Version : 1.0"></a>Version : 1.0</h1><h1 id="Useage-mk-go-pro-sh"><a href="#Useage-mk-go-pro-sh" class="headerlink" title="Useage : ./mk_go_pro.sh"></a>Useage : ./mk_go_pro.sh</h1><h1 id="mk-go-pro-sh-porject-name"><a href="#mk-go-pro-sh-porject-name" class="headerlink" title="./mk_go_pro.sh porject_name"></a>./mk_go_pro.sh porject_name</h1><h1 id="Description-创建一个go可编译的工程"><a href="#Description-创建一个go可编译的工程" class="headerlink" title="Description: 创建一个go可编译的工程"></a>Description: 创建一个go可编译的工程</h1><p>#————————————–</p>
+<h1 id="根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人"><a href="#根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人" class="headerlink" title="根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人"></a>根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人</h1><h1 id="http-blog-studygolang-com-2012-12-go项目的目录结构"><a href="#http-blog-studygolang-com-2012-12-go项目的目录结构" class="headerlink" title="http://blog.studygolang.com/2012/12/go项目的目录结构/"></a><a href="http://blog.studygolang.com/2012/12/go项目的目录结构/" target="_blank" rel="noopener">http://blog.studygolang.com/2012/12/go项目的目录结构/</a></h1><h1 id="默认情况下运行本程序，会生成如下目录和文件"><a href="#默认情况下运行本程序，会生成如下目录和文件" class="headerlink" title="默认情况下运行本程序，会生成如下目录和文件"></a>默认情况下运行本程序，会生成如下目录和文件</h1><h1 id="test"><a href="#test" class="headerlink" title="test"></a>test</h1><h1 id="├──-bin"><a href="#├──-bin" class="headerlink" title="├── bin"></a>├── bin</h1><h1 id="├──-install-sh"><a href="#├──-install-sh" class="headerlink" title="├── install.sh"></a>├── install.sh</h1><h1 id="├──-pkg"><a href="#├──-pkg" class="headerlink" title="├── pkg"></a>├── pkg</h1><h1 id="└──-src"><a href="#└──-src" class="headerlink" title="└── src"></a>└── src</h1><h1 id="├──-config"><a href="#├──-config" class="headerlink" title="├── config"></a>├── config</h1><h1 id="│-└──-config-go"><a href="#│-└──-config-go" class="headerlink" title="│   └── config.go"></a>│   └── config.go</h1><h1 id="└──-test"><a href="#└──-test" class="headerlink" title="└── test"></a>└── test</h1><h1 id="└──-main-go"><a href="#└──-main-go" class="headerlink" title="└── main.go"></a>└── main.go</h1><p>#</p>
+<h1 id="5-directories-3-files"><a href="#5-directories-3-files" class="headerlink" title="5 directories, 3 files"></a>5 directories, 3 files</h1><p>#</p>
+<h1 id="其中"><a href="#其中" class="headerlink" title="其中:"></a>其中:</h1><h1 id="1-install-sh为安装文件，"><a href="#1-install-sh为安装文件，" class="headerlink" title="1, install.sh为安装文件，"></a>1, install.sh为安装文件，</h1><h1 id="2-config-go为test项目的配置文件"><a href="#2-config-go为test项目的配置文件" class="headerlink" title="2, config.go为test项目的配置文件"></a>2, config.go为test项目的配置文件</h1><h1 id="3-main-go这个你懂的"><a href="#3-main-go这个你懂的" class="headerlink" title="3, main.go这个你懂的"></a>3, main.go这个你懂的</h1><h1 id="生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录"><a href="#生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录" class="headerlink" title="生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录"></a>生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录</h1><h1 id="├──-bin-1"><a href="#├──-bin-1" class="headerlink" title="├── bin"></a>├── bin</h1><h1 id="│-└──-test"><a href="#│-└──-test" class="headerlink" title="│   └── test"></a>│   └── test</h1><h1 id="├──-install-sh-1"><a href="#├──-install-sh-1" class="headerlink" title="├── install.sh"></a>├── install.sh</h1><h1 id="├──-pkg-1"><a href="#├──-pkg-1" class="headerlink" title="├── pkg"></a>├── pkg</h1><h1 id="│-└──-darwin-amd64"><a href="#│-└──-darwin-amd64" class="headerlink" title="│   └── darwin_amd64"></a>│   └── darwin_amd64</h1><h1 id="│-└──-config-a"><a href="#│-└──-config-a" class="headerlink" title="│   └── config.a"></a>│   └── config.a</h1><h1 id="└──-src-1"><a href="#└──-src-1" class="headerlink" title="└── src"></a>└── src</h1><h1 id="├──-config-1"><a href="#├──-config-1" class="headerlink" title="├── config"></a>├── config</h1><h1 id="│-└──-config-go-1"><a href="#│-└──-config-go-1" class="headerlink" title="│   └── config.go"></a>│   └── config.go</h1><h1 id="└──-test-1"><a href="#└──-test-1" class="headerlink" title="└── test"></a>└── test</h1><h1 id="└──-main-go-1"><a href="#└──-main-go-1" class="headerlink" title="└── main.go"></a>└── main.go</h1><h1 id="6-directories-5-files"><a href="#6-directories-5-files" class="headerlink" title="6 directories, 5 files"></a>6 directories, 5 files</h1><p>#</p>
+<h1 id="多了两个文件"><a href="#多了两个文件" class="headerlink" title="多了两个文件"></a>多了两个文件</h1><h1 id="1-bin目录下的test，这个是可执行稳健"><a href="#1-bin目录下的test，这个是可执行稳健" class="headerlink" title="1, bin目录下的test，这个是可执行稳健"></a>1, bin目录下的test，这个是可执行稳健</h1><h1 id="2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件"><a href="#2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件" class="headerlink" title="2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件"></a>2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件</h1><p>#</p>
+<h1 id="enjoy-it"><a href="#enjoy-it" class="headerlink" title="enjoy it!"></a>enjoy it!</h1><p>PWD=$(pwd)<br>cd $PWD</p>
+<p>if [[ “$1” = “” ]]; then<br>echo “Useage: ./mk_go_pro.sh porject_name”<br>echo -ne “Please input the Porject Name[test]”<br>read Answer<br>if [ “$Answer” = “” ]; then<br>echo -e “test”;<br>PRO_NAME=test;<br>else<br>PRO_NAME=$Answer;<br>fi<br>else<br>PRO_NAME=$1;<br>fi</p>
+<p>#创建目录<br>echo “Init Directory …”<br>mkdir -p $PRO_NAME/bin<br>mkdir -p $PRO_NAME/pkg<br>mkdir -p $PRO_NAME/src/config<br>mkdir -p $PRO_NAME/src/$PRO_NAME</p>
+<p>#创建install文件<br>echo “Create install/install.sh …”<br>cd $PRO_NAME<br>echo ‘#!/bin/bash’ &gt; install.sh<br>echo ‘if [ ! -f install.sh ]; then’ &gt;&gt; install.sh<br>echo “echo ‘install must be run within its container folder’ 1&gt;&amp;2” &gt;&gt; install.sh<br>echo “exit 1” &gt;&gt; install.sh<br>echo “fi” &gt;&gt; install.sh<br>echo &gt;&gt; install.sh<br>echo “CURDIR=`pwd`“ &gt;&gt; install.sh<br>echo “OLDGOPATH=\”\$GOPATH\”” &gt;&gt; install.sh<br>echo “export GOPATH=\”\$CURDIR\”” &gt;&gt; install.sh<br>echo &gt;&gt; install.sh<br>echo “gofmt -w src” &gt;&gt; install.sh<br>echo “go install $PRO_NAME” &gt;&gt; install.sh<br>echo “export GOPATH=\”\$OLDGOPATH\”” &gt;&gt; install.sh<br>echo &gt;&gt; install.sh<br>echo “echo ‘finished’” &gt;&gt;install.sh<br>chmod +x install.sh</p>
+<p>#创建config.go文件<br>echo “Create src/config/config.go …”<br>cd src/config<br>echo package config &gt; config.go<br>echo &gt;&gt; config.go<br>echo func LoadConfig() { &gt;&gt; config.go<br>echo &gt;&gt; config.go<br>echo } &gt;&gt; config.go</p>
+<p>#创建main.go<br>echo “Create src/$PRO_NAME/main.go …”<br>cd ../$PRO_NAME/<br>echo “package main” &gt; main.go<br>echo &gt;&gt; main.go<br>echo “import (“ &gt;&gt; main.go<br>echo “ \”config\”” &gt;&gt; main.go<br>echo “ \”fmt\”” &gt;&gt; main.go<br>echo “)” &gt;&gt; main.go<br>echo &gt;&gt; main.go<br>echo “func main() {“ &gt;&gt; main.go<br>echo “ config.LoadConfig()” &gt;&gt; main.go<br>echo “ fmt.Println(\”Hello $PRO_NAME!\”)” &gt;&gt; main.go<br>echo “}” &gt;&gt; main.go<br>echo “All Done!”</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Go/">Go</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/3.go-通过linux脚本创建go工程/" data-title="3.go通过linux脚本创建go工程 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/2.k8s-常用操作/" title="2.k8s的常用操作">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  2.k8s的常用操作</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/2.go-ethereum-mac下安装go-ethereum/"  title="2.mac下 安装go-ethereum">
+ <strong>NEXT:</strong><br/> 
+ <span>2.mac下 安装go-ethereum
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-mk-go-pro-sh"><span class="toc-number">1.</span> <span class="toc-text">Module : mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Author-Blair-Zhong"><span class="toc-number">2.</span> <span class="toc-text">Author : Blair Zhong</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Created-2013-07-23"><span class="toc-number">3.</span> <span class="toc-text">Created : 2013.07.23</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify"><span class="toc-number">4.</span> <span class="toc-text">Modify :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version-1-0"><span class="toc-number">5.</span> <span class="toc-text">Version : 1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useage-mk-go-pro-sh"><span class="toc-number">6.</span> <span class="toc-text">Useage : ./mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mk-go-pro-sh-porject-name"><span class="toc-number">7.</span> <span class="toc-text">./mk_go_pro.sh porject_name</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Description-创建一个go可编译的工程"><span class="toc-number">8.</span> <span class="toc-text">Description: 创建一个go可编译的工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人"><span class="toc-number">9.</span> <span class="toc-text">根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-blog-studygolang-com-2012-12-go项目的目录结构"><span class="toc-number">10.</span> <span class="toc-text">http://blog.studygolang.com/2012/12/go项目的目录结构/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认情况下运行本程序，会生成如下目录和文件"><span class="toc-number">11.</span> <span class="toc-text">默认情况下运行本程序，会生成如下目录和文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#test"><span class="toc-number">12.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin"><span class="toc-number">13.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh"><span class="toc-number">14.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg"><span class="toc-number">15.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src"><span class="toc-number">16.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config"><span class="toc-number">17.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go"><span class="toc-number">18.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test"><span class="toc-number">19.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go"><span class="toc-number">20.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-directories-3-files"><span class="toc-number">21.</span> <span class="toc-text">5 directories, 3 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其中"><span class="toc-number">22.</span> <span class="toc-text">其中:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-install-sh为安装文件，"><span class="toc-number">23.</span> <span class="toc-text">1, install.sh为安装文件，</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-config-go为test项目的配置文件"><span class="toc-number">24.</span> <span class="toc-text">2, config.go为test项目的配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-main-go这个你懂的"><span class="toc-number">25.</span> <span class="toc-text">3, main.go这个你懂的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录"><span class="toc-number">26.</span> <span class="toc-text">生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin-1"><span class="toc-number">27.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-test"><span class="toc-number">28.</span> <span class="toc-text">│   └── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh-1"><span class="toc-number">29.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg-1"><span class="toc-number">30.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-darwin-amd64"><span class="toc-number">31.</span> <span class="toc-text">│   └── darwin_amd64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-a"><span class="toc-number">32.</span> <span class="toc-text">│   └── config.a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src-1"><span class="toc-number">33.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config-1"><span class="toc-number">34.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go-1"><span class="toc-number">35.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test-1"><span class="toc-number">36.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go-1"><span class="toc-number">37.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-directories-5-files"><span class="toc-number">38.</span> <span class="toc-text">6 directories, 5 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多了两个文件"><span class="toc-number">39.</span> <span class="toc-text">多了两个文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-bin目录下的test，这个是可执行稳健"><span class="toc-number">40.</span> <span class="toc-text">1, bin目录下的test，这个是可执行稳健</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件"><span class="toc-number">41.</span> <span class="toc-text">2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#enjoy-it"><span class="toc-number">42.</span> <span class="toc-text">enjoy it!</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Go/" title="Go">Go<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/K8s/" title="K8s">K8s<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mongodb/" title="Mongodb">Mongodb<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>

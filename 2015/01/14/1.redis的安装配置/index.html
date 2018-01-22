@@ -1,0 +1,379 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>1.redis的安装配置 | woyinzf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhaofa Yin">
+    
+    <meta name="description" content="CentOS 6.5 下安装 Redis 2.8.7
+wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd redis-stablemake
+前面3步应该没有问题，主要的问题是执行make的时候">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="woyinzf" title="woyinzf"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/14/1.redis的安装配置/" title="1.redis的安装配置" itemprop="url">1.redis的安装配置</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-01-22T03:44:50.516Z" itemprop="dateModified">2018-01-22</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+		</div>
+		
+		<p>CentOS 6.5 下安装 Redis 2.8.7</p>
+<p>wget <a href="http://download.redis.io/redis-stable.tar.gz" target="_blank" rel="noopener">http://download.redis.io/redis-stable.tar.gz</a><br>tar xvzf redis-stable.tar.gz<br>cd redis-stable<br>make</p>
+<p>前面3步应该没有问题，主要的问题是执行make的时候，出现了异常。<br>异常一：<br>make[2]: cc: Command not found<br>异常原因：没有安装gcc<br>解决方案：yum install gcc-c++</p>
+<p>异常二：<br>zmalloc.h:51:31: error: jemalloc/jemalloc.h: No such file or directory<br>异常原因：一些编译依赖或原来编译遗留出现的问题<br>解决方案：make distclean。清理一下，然后再make。</p>
+<p>在make成功以后，需要make test。在make test出现异常。<br>异常一：<br>couldn’t execute “tclsh8.5”: no such file or directory<br>异常原因：没有安装tcl<br>解决方案：yum install -y tcl。</p>
+<p>在make成功以后，会在src目录下多出一些可执行文件：redis-server，redis-cli等等。<br>方便期间用cp命令复制到usr目录下运行。<br>cp redis-server /usr/local/bin/<br>cp redis-cli /usr/local/bin/<br>然后新建目录，存放配置文件<br>mkdir /etc/redis<br>mkdir /var/redis<br>mkdir /var/redis/log<br>mkdir /var/redis/run<br>mkdir /var/redis/6379</p>
+<p>在redis解压根目录中找到配置文件模板，复制到如下位置。<br>cp redis.conf /etc/redis/6379.conf<br>通过vim命令修改<br>daemonize yes<br>pidfile /var/redis/run/redis_6379.pid<br>logfile /var/redis/log/redis_6379.log<br>dir /var/redis/6379<br>最后运行redis：<br>$ redis-server /etc/redis/6379.conf</p>
+<p>四. 运行 Redis</p>
+<ol>
+<li>运行服务</li>
+</ol>
+<p>redis-server /etc/redis/redis.conf<br>即可在后台启动redis服务，确认运行了之后，可以用redis-benchmark命令测试看看，还可以通过redis-cli命令实际操作一下，比如：<br>redis-cli set foo bar<br>OK<br>redis-cli get foo<br>bar</p>
+<ol>
+<li>关闭服务</li>
+</ol>
+<p>redis-cli shutdown<br>如果端口变化可以指定端口:<br>redis-cli -p 6380 shutdown</p>
+<ol>
+<li>保存/备份</li>
+</ol>
+<p>数据备份可以通过定期备份该文件实现。<br>因为redis是异步写入磁盘的，如果要让内存中的数据马上写入硬盘可以执行如下命令：<br>redis-cli save 或者 redis-cli -p 6380 save（指定端口）<br>注意，以上部署操作需要具备一定的权限，比如复制和设定内核参数等。<br>执行redis-benchmark命令时也会将内存数据写入硬盘。</p>
+<ol>
+<li>同步机制</li>
+</ol>
+<p>redis实现的同步机制相对简单，缺少同步机制常见的check point和校验机制。<br>在运行时，如果master -&gt; slave同步请求转发被丢弃, slave将无法恢复该请求的相关信息，直到slave重启时从master全量加载数据时才能修复。因此，建议使用redis尽量利用其 key/value和value支持多种类型的特性，存储一些相对不重要的数据。</p>
+<p>五. 自启动</p>
+<p>从此处下载脚本  下载<br>声明：此脚本来自网络，经过简单修改，已测，可用。<br>用这个脚本管理之前，需要先配置下面的内核参数，否则Redis脚本在重启或停止redis时，将会报错，并且不能自动在停止服务前同步数据到磁盘上：<br>vi /etc/sysctl.conf<br>vm.overcommit_memory = 1<br>然后应用生效：<br>sysctl -p<br>然后增加服务并开机自启动：<br>chmod 755 /etc/init.d/redis<br>chkconfig –add redis<br>chkconfig –level 345 redis on<br>chkconfig –list redis</p>
+<p>java 和 redis 结合使用的两个包文件（附件中）<br>使用方式：参考一下网址： <a href="http://aofengblog.blog.163.com/blog/static/631702120147298317919/" target="_blank" rel="noopener">http://aofengblog.blog.163.com/blog/static/631702120147298317919/</a></p>
+<p>参照实例代码：<br>// 创建连接<br>String host = “192.168.56.102”;int port = 6379; Jedis client = new Jedis(host, port);<br>// 执行set指令String result = client.set(“key-string”, “Hello, Redis!”); System.out.println( String.format(“set指令执行结果:%s”, result) );<br>// 执行get指令String value = client.get(“key-string”);System.out.println( String.format(“get指令执行结果:%s”, value) );<br>共2个附件, 0.42MB下载全部附件</p>
+<p>commons-pool2-2.3.jar107KB 下载jedis-2.6.1.jar322KB 下载</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Redis/">Redis</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/blog/">blog</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/14/1.redis的安装配置/" data-title="1.redis的安装配置 | woyinzf" data-tsina="" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  1.kafka 常用命令</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/01/14/1.html-超链接target处理/"  title="1.超链接加上garget处理">
+ <strong>NEXT:</strong><br/> 
+ <span>1.超链接加上garget处理
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Go/" title="Go">Go<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Go-Ethereum/" title="Go-Ethereum">Go-Ethereum<sup>8</sup></a></li>
+		
+			<li><a href="/tags/Html/" title="Html">Html<sup>6</sup></a></li>
+		
+			<li><a href="/tags/Java/" title="Java">Java<sup>11</sup></a></li>
+		
+			<li><a href="/tags/K8s/" title="K8s">K8s<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Kafka/" title="Kafka">Kafka<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Linux/" title="Linux">Linux<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Mac/" title="Mac">Mac<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mongodb/" title="Mongodb">Mongodb<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Mysql/" title="Mysql">Mysql<sup>4</sup></a></li>
+		
+			<li><a href="/tags/Nodejs/" title="Nodejs">Nodejs<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Oracle/" title="Oracle">Oracle<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Rabbix/" title="Rabbix">Rabbix<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Redis/" title="Redis">Redis<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2018 
+		
+		<a href="http://yoursite.com" target="_blank" title="Zhaofa Yin">Zhaofa Yin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
