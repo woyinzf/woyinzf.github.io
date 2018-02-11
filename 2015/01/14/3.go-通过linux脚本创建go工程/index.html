@@ -38,7 +38,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -51,7 +51,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -75,7 +75,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
     </p>
   <p class="article-time">
     <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-    更新日期:<time datetime="2018-01-22T03:09:08.239Z" itemprop="dateModified">2018-01-22</time>
+    Updated:<time datetime="2018-01-22T03:09:08.239Z" itemprop="dateModified">2018-01-22</time>
     
   </p>
 </header>
@@ -83,7 +83,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 		
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-mk-go-pro-sh"><span class="toc-number">1.</span> <span class="toc-text">Module : mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Author-Blair-Zhong"><span class="toc-number">2.</span> <span class="toc-text">Author : Blair Zhong</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Created-2013-07-23"><span class="toc-number">3.</span> <span class="toc-text">Created : 2013.07.23</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify"><span class="toc-number">4.</span> <span class="toc-text">Modify :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version-1-0"><span class="toc-number">5.</span> <span class="toc-text">Version : 1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useage-mk-go-pro-sh"><span class="toc-number">6.</span> <span class="toc-text">Useage : ./mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mk-go-pro-sh-porject-name"><span class="toc-number">7.</span> <span class="toc-text">./mk_go_pro.sh porject_name</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Description-创建一个go可编译的工程"><span class="toc-number">8.</span> <span class="toc-text">Description: 创建一个go可编译的工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人"><span class="toc-number">9.</span> <span class="toc-text">根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-blog-studygolang-com-2012-12-go项目的目录结构"><span class="toc-number">10.</span> <span class="toc-text">http://blog.studygolang.com/2012/12/go项目的目录结构/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认情况下运行本程序，会生成如下目录和文件"><span class="toc-number">11.</span> <span class="toc-text">默认情况下运行本程序，会生成如下目录和文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#test"><span class="toc-number">12.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin"><span class="toc-number">13.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh"><span class="toc-number">14.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg"><span class="toc-number">15.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src"><span class="toc-number">16.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config"><span class="toc-number">17.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go"><span class="toc-number">18.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test"><span class="toc-number">19.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go"><span class="toc-number">20.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-directories-3-files"><span class="toc-number">21.</span> <span class="toc-text">5 directories, 3 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其中"><span class="toc-number">22.</span> <span class="toc-text">其中:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-install-sh为安装文件，"><span class="toc-number">23.</span> <span class="toc-text">1, install.sh为安装文件，</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-config-go为test项目的配置文件"><span class="toc-number">24.</span> <span class="toc-text">2, config.go为test项目的配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-main-go这个你懂的"><span class="toc-number">25.</span> <span class="toc-text">3, main.go这个你懂的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录"><span class="toc-number">26.</span> <span class="toc-text">生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin-1"><span class="toc-number">27.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-test"><span class="toc-number">28.</span> <span class="toc-text">│   └── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh-1"><span class="toc-number">29.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg-1"><span class="toc-number">30.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-darwin-amd64"><span class="toc-number">31.</span> <span class="toc-text">│   └── darwin_amd64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-a"><span class="toc-number">32.</span> <span class="toc-text">│   └── config.a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src-1"><span class="toc-number">33.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config-1"><span class="toc-number">34.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go-1"><span class="toc-number">35.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test-1"><span class="toc-number">36.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go-1"><span class="toc-number">37.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-directories-5-files"><span class="toc-number">38.</span> <span class="toc-text">6 directories, 5 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多了两个文件"><span class="toc-number">39.</span> <span class="toc-text">多了两个文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-bin目录下的test，这个是可执行稳健"><span class="toc-number">40.</span> <span class="toc-text">1, bin目录下的test，这个是可执行稳健</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件"><span class="toc-number">41.</span> <span class="toc-text">2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#enjoy-it"><span class="toc-number">42.</span> <span class="toc-text">enjoy it!</span></a></li></ol>
 		</div>
 		
@@ -129,10 +129,10 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/2.html-浏览器对base64二进制图片展示/" title="2浏览器对base64二进制图片展示">
+ <a href="/2015/01/14/1.zabbix-centos7.3下sendmail配置邮件发送/" title="1.centos7.3下sendmail配置邮件发送">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  2浏览器对base64二进制图片展示</span>
+  1.centos7.3下sendmail配置邮件发送</span>
 </a>
 </div>
 
@@ -149,20 +149,20 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 
 	
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
   <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Module-mk-go-pro-sh"><span class="toc-number">1.</span> <span class="toc-text">Module : mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Author-Blair-Zhong"><span class="toc-number">2.</span> <span class="toc-text">Author : Blair Zhong</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Created-2013-07-23"><span class="toc-number">3.</span> <span class="toc-text">Created : 2013.07.23</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Modify"><span class="toc-number">4.</span> <span class="toc-text">Modify :</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version-1-0"><span class="toc-number">5.</span> <span class="toc-text">Version : 1.0</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Useage-mk-go-pro-sh"><span class="toc-number">6.</span> <span class="toc-text">Useage : ./mk_go_pro.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mk-go-pro-sh-porject-name"><span class="toc-number">7.</span> <span class="toc-text">./mk_go_pro.sh porject_name</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Description-创建一个go可编译的工程"><span class="toc-number">8.</span> <span class="toc-text">Description: 创建一个go可编译的工程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根据-Go语言学习园地博客的帖子编写，如有侵权请联系本人"><span class="toc-number">9.</span> <span class="toc-text">根据 Go语言学习园地博客的帖子编写，如有侵权请联系本人</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#http-blog-studygolang-com-2012-12-go项目的目录结构"><span class="toc-number">10.</span> <span class="toc-text">http://blog.studygolang.com/2012/12/go项目的目录结构/</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#默认情况下运行本程序，会生成如下目录和文件"><span class="toc-number">11.</span> <span class="toc-text">默认情况下运行本程序，会生成如下目录和文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#test"><span class="toc-number">12.</span> <span class="toc-text">test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin"><span class="toc-number">13.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh"><span class="toc-number">14.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg"><span class="toc-number">15.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src"><span class="toc-number">16.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config"><span class="toc-number">17.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go"><span class="toc-number">18.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test"><span class="toc-number">19.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go"><span class="toc-number">20.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-directories-3-files"><span class="toc-number">21.</span> <span class="toc-text">5 directories, 3 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其中"><span class="toc-number">22.</span> <span class="toc-text">其中:</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-install-sh为安装文件，"><span class="toc-number">23.</span> <span class="toc-text">1, install.sh为安装文件，</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-config-go为test项目的配置文件"><span class="toc-number">24.</span> <span class="toc-text">2, config.go为test项目的配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-main-go这个你懂的"><span class="toc-number">25.</span> <span class="toc-text">3, main.go这个你懂的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成完毕之后运行进入test目录，运行install-sh会生成如下文件和目录"><span class="toc-number">26.</span> <span class="toc-text">生成完毕之后运行进入test目录，运行install.sh会生成如下文件和目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-bin-1"><span class="toc-number">27.</span> <span class="toc-text">├── bin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-test"><span class="toc-number">28.</span> <span class="toc-text">│   └── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-install-sh-1"><span class="toc-number">29.</span> <span class="toc-text">├── install.sh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-pkg-1"><span class="toc-number">30.</span> <span class="toc-text">├── pkg</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-darwin-amd64"><span class="toc-number">31.</span> <span class="toc-text">│   └── darwin_amd64</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-a"><span class="toc-number">32.</span> <span class="toc-text">│   └── config.a</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-src-1"><span class="toc-number">33.</span> <span class="toc-text">└── src</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#├──-config-1"><span class="toc-number">34.</span> <span class="toc-text">├── config</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#│-└──-config-go-1"><span class="toc-number">35.</span> <span class="toc-text">│   └── config.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-test-1"><span class="toc-number">36.</span> <span class="toc-text">└── test</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#└──-main-go-1"><span class="toc-number">37.</span> <span class="toc-text">└── main.go</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-directories-5-files"><span class="toc-number">38.</span> <span class="toc-text">6 directories, 5 files</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#多了两个文件"><span class="toc-number">39.</span> <span class="toc-text">多了两个文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-bin目录下的test，这个是可执行稳健"><span class="toc-number">40.</span> <span class="toc-text">1, bin目录下的test，这个是可执行稳健</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-pkg-darwin-amd64下的config-a，这个是config编译后产生的文件"><span class="toc-number">41.</span> <span class="toc-text">2, pkg/darwin_amd64下的config.a，这个是config编译后产生的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#enjoy-it"><span class="toc-number">42.</span> <span class="toc-text">enjoy it!</span></a></li></ol>
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 			<li><a href="/categories/blog/" title="blog">blog<sup>58</sup></a></li>
@@ -173,7 +173,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -217,7 +217,7 @@ Module : mk_go_pro.shAuthor : Blair ZhongCreated : 2013.07.23Modify :Version : 1
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>

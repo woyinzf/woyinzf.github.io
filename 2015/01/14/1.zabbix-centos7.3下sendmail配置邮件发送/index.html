@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>1.mongodb docker化搭建 | woyinzf</title>
+    <title>1.centos7.3下sendmail配置邮件发送 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="学习地址：https://hub.docker.com/_/mongo/
-==mongo的相关操作======start（下载官网mongo）启动容器：docker run -d –name sde-mongo -p 27017:27017 mongo –auth
-进入容器：(初始化数据)docke">
+    <meta name="description" content="当前测试环境是：172.16.192.90
+1.下载软件wget http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz
+2.创建目录mkdir /usr/local/bin
+3.解压软件tar zxf se">
     
     
     
@@ -67,15 +68,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/14/1.mongodb-docker化搭建/" title="1.mongodb docker化搭建" itemprop="url">1.mongodb docker化搭建</a>
+      <a href="/2015/01/14/1.zabbix-centos7.3下sendmail配置邮件发送/" title="1.centos7.3下sendmail配置邮件发送" itemprop="url">1.centos7.3下sendmail配置邮件发送</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-22T03:49:20.686Z" itemprop="dateModified">2018-01-22</time>
+    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-02-11T14:57:12.541Z" itemprop="dateModified">2018-02-11</time>
     
   </p>
 </header>
@@ -84,24 +85,35 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载软件"><span class="toc-number">1.</span> <span class="toc-text">1.下载软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建目录"><span class="toc-number">2.</span> <span class="toc-text">2.创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解压软件"><span class="toc-number">3.</span> <span class="toc-text">3.解压软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-进入目录"><span class="toc-number">4.</span> <span class="toc-text">4.进入目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-复制文件，并设置权限"><span class="toc-number">5.</span> <span class="toc-text">5.复制文件，并设置权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-安装组件"><span class="toc-number">6.</span> <span class="toc-text">6.安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-请求实例："><span class="toc-number">7.</span> <span class="toc-text">7.请求实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到问题："><span class="toc-number">8.</span> <span class="toc-text">遇到问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决："><span class="toc-number">9.</span> <span class="toc-text">解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sendEmail乱码解决"><span class="toc-number">10.</span> <span class="toc-text">sendEmail乱码解决</span></a></li></ol>
 		</div>
 		
-		<p>学习地址：<a href="https://hub.docker.com/_/mongo/" target="_blank" rel="noopener">https://hub.docker.com/_/mongo/</a></p>
-<p>==mongo的相关操作======start（下载官网mongo）<br>启动容器：<br>docker run -d –name sde-mongo -p 27017:27017 mongo –auth</p>
-<p>进入容器：(初始化数据)<br>docker exec -it 12d4320c6e7c mongo admin</p>
-<p>查看版本：<br>mongo -version</p>
-<p>初始化数据：<br>db.createUser({ user: ‘jsmith’, pwd: ‘some-initial-password’, roles: [ { role: “userAdminAnyDatabase”, db: “admin” } ] });<br>Successfully added user: {<br>    “user” : “jsmith”,<br>    “roles” : [<br>        {<br>            “role” : “userAdminAnyDatabase”,<br>            “db” : “admin”<br>        }<br>    ]<br>}</p>
-<p>客户端调用：<br>docker run -it –rm –link sde-mongo:mongo mongo mongo -u jsmith -p some-initial-password –authenticationDatabase admin sde-mongo/some-db</p>
-<p>查看数据：<br>db.getName();</p>
-<p>==mongo的相关操作======end</p>
+		<p>当前测试环境是：172.16.192.90</p>
+<h3 id="1-下载软件"><a href="#1-下载软件" class="headerlink" title="1.下载软件"></a>1.下载软件</h3><p>wget <a href="http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz" target="_blank" rel="noopener">http://caspian.dotconf.net/menu/Software/SendEmail/sendEmail-v1.56.tar.gz</a></p>
+<h3 id="2-创建目录"><a href="#2-创建目录" class="headerlink" title="2.创建目录"></a>2.创建目录</h3><p>mkdir /usr/local/bin</p>
+<h3 id="3-解压软件"><a href="#3-解压软件" class="headerlink" title="3.解压软件"></a>3.解压软件</h3><p>tar zxf sendEmail-v1.56.tar.gz -C /usr/src</p>
+<h3 id="4-进入目录"><a href="#4-进入目录" class="headerlink" title="4.进入目录"></a>4.进入目录</h3><p>cd /usr/src/sendEmail-v1.56</p>
+<h3 id="5-复制文件，并设置权限"><a href="#5-复制文件，并设置权限" class="headerlink" title="5.复制文件，并设置权限"></a>5.复制文件，并设置权限</h3><p>cp -a sendEmail /usr/local/bin<br>chmod +x /usr/local/bin/sendEmail</p>
+<h3 id="6-安装组件"><a href="#6-安装组件" class="headerlink" title="6.安装组件"></a>6.安装组件</h3><p>yum install perl-Net-SSLeay perl-IO-Socket-SSL -y</p>
+<h3 id="7-请求实例："><a href="#7-请求实例：" class="headerlink" title="7.请求实例："></a>7.请求实例：</h3><p>/usr/local/bin/sendEmail -f woyinzf@163.com -t 962087325@qq.com -s smtp.163.com -u “我是邮件主题===测试sendEmail5” -o message-content-type=html -o message-charset=UTF-8 -xu woyinzf@163.com -xp woshihaisong428 -m “333我是邮件内容测试1444” -l /var/log/sendMyEmail.log -o tls=no</p>
+<p>/usr/local/bin/sendEmail -f 18511462056@189.cn -t 962087325@qq.com -s smtp.189.cn -u “我是邮件主题===测试sendEmail5” -o message-content-type=html -o message-charset=UTF-8 -xu 18511462056@189.cn -xp song18511462056 -m “333我是邮件内容测试1444” -l /var/log/sendMyEmail.log -o tls=no</p>
+<h3 id="遇到问题："><a href="#遇到问题：" class="headerlink" title="遇到问题："></a>遇到问题：</h3><p>发送正文乱码</p>
+<h3 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h3><p>1.当前crt的属性是否设置 utf-8<br>2.参考下面</p>
+<h3 id="sendEmail乱码解决"><a href="#sendEmail乱码解决" class="headerlink" title="sendEmail乱码解决"></a>sendEmail乱码解决</h3><p>1.测试一下中文发送，有的已经支持iso-8859-1编码，但大部分邮箱还是不支持，建议修改</p>
+<p>1<br>2<br>[root@localhost objects]# /usr/local/bin/sendEmail -f 123@163.com -t 456@foxmail.com -u “test” -m “世界你好！”<br>Jul 12 11:18:24 localhost sendEmail[15873]: Email was sent successfully!</p>
+<p>2.修改编码为utf-8</p>
+<p>1<br>vi /usr/local/bin/sendEmail</p>
+<p>把”message-charset” 修改为 utf-8</p>
+<p>1<br>2<br>3<br>4<br>5</p>
+<p>######以上省略N行######<br>    “message-format”       =&gt; ‘normal’,                            ## If “raw” is specified the message is sent unmodified<br>    “message-charset”      =&gt; ‘iso-8859-1’,                        ## Message character-set<br>    “message-content-type” =&gt; ‘auto’,                              ## auto, text, html or an actual string to put into the content-type header.</p>
+<p>######以下省略N行######</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Mongodb/">Mongodb</a>
+  <span></span> <a href="/tags/Zabbix/">Zabbix</a>
   </div>
 
 
@@ -114,7 +126,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/01/14/1.mongodb-docker化搭建/" data-title="1.mongodb docker化搭建 | woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/1.zabbix-centos7.3下sendmail配置邮件发送/" data-title="1.centos7.3下sendmail配置邮件发送 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -124,18 +136,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/3.mysql-存储过程的用法/" title="3.mysql-存储过程的用法">
+ <a href="/2015/01/14/2.go-环境变量配置/" title="2.go环境变量配置">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  3.mysql-存储过程的用法</span>
+  2.go环境变量配置</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/1.etcd-初始ETCD/"  title="1.初始ETCD">
+<a href="/2015/01/14/3.go-通过linux脚本创建go工程/"  title="3.go通过linux脚本创建go工程">
  <strong>NEXT:</strong><br/> 
- <span>1.初始ETCD
+ <span>3.go通过linux脚本创建go工程
 </span>
 </a>
 </div>
@@ -148,7 +160,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载软件"><span class="toc-number">1.</span> <span class="toc-text">1.下载软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-创建目录"><span class="toc-number">2.</span> <span class="toc-text">2.创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-解压软件"><span class="toc-number">3.</span> <span class="toc-text">3.解压软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-进入目录"><span class="toc-number">4.</span> <span class="toc-text">4.进入目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-复制文件，并设置权限"><span class="toc-number">5.</span> <span class="toc-text">5.复制文件，并设置权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-安装组件"><span class="toc-number">6.</span> <span class="toc-text">6.安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-请求实例："><span class="toc-number">7.</span> <span class="toc-text">7.请求实例：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#遇到问题："><span class="toc-number">8.</span> <span class="toc-text">遇到问题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决："><span class="toc-number">9.</span> <span class="toc-text">解决：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sendEmail乱码解决"><span class="toc-number">10.</span> <span class="toc-text">sendEmail乱码解决</span></a></li></ol>
   </div>
 
 <div id="asidepart">
