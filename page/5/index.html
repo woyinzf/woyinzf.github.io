@@ -62,63 +62,18 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
+    <a href="/2015/01/14/1.mysql-设置远程访问/" title="1.mysql-设置远程访问" itemprop="url">
   
-    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
+    <h1 itemprop="name">1.mysql-设置远程访问</h1>
     
      
-           <p itemprop="description" >上代码执行一下步骤：
-yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
+           <p itemprop="description" >Mysql默认是不可以通过远程机器访问的,通过下面的配置可以开启远程访问 
+在MySQL Server端： 
+执行mysql 命令进入mysql 命令模式， 
+Sql代码  
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
-  
-    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
-    
-     
-           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
-client：105
-server：103
-+++</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令" itemprop="url">
-  
-    <h1 itemprop="name">1.kafka 常用命令</h1>
-    
-     
-           <p itemprop="description" >上代码启动服务      首先启动zookeeper服务bin/zookeeper-server-start.sh config/zookeeper.properties
-启动Kafka
-bin/kafka-server-start.sh config/server.proper</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
-  
-    <h1 itemprop="name">1.docker常用命令</h1>
-    
-     
-           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
-运行后退出：docker run centos /bin/echo ‘hello world’
-查看运行的及停止运行的容器docker ps -a
-运行一个容器（命名，i打开，t打开终</p>
+mysql&amp;gt; use mysql;  
+mysql&amp;gt; GRANT ALL ON . TO </p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -148,34 +103,15 @@ vi 操作 和 find 和远程copy （scp）操作
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
+    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
   
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
     
      
-           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.mysql-设置远程访问/" title="1.mysql-设置远程访问" itemprop="url">
-  
-    <h1 itemprop="name">1.mysql-设置远程访问</h1>
-    
-     
-           <p itemprop="description" >Mysql默认是不可以通过远程机器访问的,通过下面的配置可以开启远程访问 
-在MySQL Server端： 
-执行mysql 命令进入mysql 命令模式， 
-Sql代码  
-
-mysql&amp;gt; use mysql;  
-mysql&amp;gt; GRANT ALL ON . TO </p>
+           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
+client：105
+server：103
++++</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -202,6 +138,38 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
 
   <section class="post" itemscope itemprop="blogPost">
   
+    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
+  
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    
+     
+           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，查看值</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
+  
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    
+     
+           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
     <a href="/2015/01/14/1.rabbix-docker化搭建/" title="1.Rabbix-docker 化搭建" itemprop="url">
   
     <h1 itemprop="name">1.Rabbix-docker 化搭建</h1>
@@ -209,6 +177,39 @@ mysql&amp;gt; GRANT ALL ON . TO </p>
      
            <p itemprop="description" >启用容器方法1，会多一个镜像docker run -d –hostname my-rabbit –name sde-rabbit -p 8080:15672 rabbitmq:3-management
 启用容器方法2，需要进入容器，启用一个命令（下面有rabbitmq_manag</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
+  
+    <h1 itemprop="name">1.docker常用命令</h1>
+    
+     
+           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
+运行后退出：docker run centos /bin/echo ‘hello world’
+查看运行的及停止运行的容器docker ps -a
+运行一个容器（命名，i打开，t打开终</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令" itemprop="url">
+  
+    <h1 itemprop="name">1.kafka 常用命令</h1>
+    
+     
+           <p itemprop="description" >上代码启动服务      首先启动zookeeper服务bin/zookeeper-server-start.sh config/zookeeper.properties
+启动Kafka
+bin/kafka-server-start.sh config/server.proper</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
