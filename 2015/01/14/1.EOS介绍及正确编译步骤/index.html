@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>5.go-ethereum-修改创世区块默认不出块的方式 | woyinzf</title>
+    <title>1.EOS介绍及正确编译步骤 | woyinzf</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhaofa Yin">
     
-    <meta name="description" content="创世区块文件（xxx.json）,出块难度较高（diffculty）">
+    <meta name="description" content="EOS简介：EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。该软件提供帐户、身份验证、数据库、异步通信和跨越数百个CPU内核或集群的应用程序调度。由此产生的技术是一种区块链架构，它可以扩展至每秒处">
     
     
     
@@ -65,15 +65,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/01/14/5.go-ethereum-修改创世区块默认不出块的方式/" title="5.go-ethereum-修改创世区块默认不出块的方式" itemprop="url">5.go-ethereum-修改创世区块默认不出块的方式</a>
+      <a href="/2015/01/14/1.EOS介绍及正确编译步骤/" title="1.EOS介绍及正确编译步骤" itemprop="url">1.EOS介绍及正确编译步骤</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="Zhaofa Yin">Zhaofa Yin</a>
     </p>
   <p class="article-time">
-    <time datetime="2015-01-14T15:05:42.000Z" itemprop="datePublished">2015-01-14</time>
-    Updated:<time datetime="2018-01-22T08:46:10.113Z" itemprop="dateModified">2018-01-22</time>
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+    Updated:<time datetime="2018-02-11T15:10:51.934Z" itemprop="dateModified">2018-02-11</time>
     
   </p>
 </header>
@@ -82,17 +82,28 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#EOS简介："><span class="toc-number">1.</span> <span class="toc-text">EOS简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译环境："><span class="toc-number">2.</span> <span class="toc-text">编译环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译步骤："><span class="toc-number">3.</span> <span class="toc-text">编译步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-下载代码，编译代码（可以建立自己的目录）"><span class="toc-number">3.1.</span> <span class="toc-text">1.下载代码，编译代码（可以建立自己的目录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-启动eos，连接到eos测试节点（手动对应好目录）"><span class="toc-number">3.2.</span> <span class="toc-text">2.启动eos，连接到eos测试节点（手动对应好目录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）"><span class="toc-number">3.3.</span> <span class="toc-text">3.查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成功提示："><span class="toc-number">4.</span> <span class="toc-text">成功提示：</span></a></li></ol>
 		</div>
 		
-		<p>创世区块文件（xxx.json）,出块难度较高（diffculty）</p>
+		<h3 id="EOS简介："><a href="#EOS简介：" class="headerlink" title="EOS简介："></a>EOS简介：</h3><p>EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。该软件提供帐户、身份验证、数据库、异步通信和跨越数百个CPU内核或集群的应用程序调度。由此产生的技术是一种区块链架构，它可以扩展至每秒处理百万级交易，消除用户的手续费，并且允许快速和轻松的部署去中心化的应用。</p>
+<pre><code>摘自：EOS.IO 技术白皮书
+</code></pre><p>引入一个小插曲，本人前期参与研究go-ethereum的的联盟链搭建，pow，pbft，istanbul，clique共识的研究及solidtiy的编写。因为go-ethereum性能问题，TPS亲测大概30~40左右，后期拜读各显神通的白皮书，靠谱的太少，因为EOS的作者曾参与了由BTS,Steem的研发，三者都采用了著名的graphene技术(实现高TPS的关键技术)，目前BTS的TPS在100k左右，EOS号称百万TPS, 因此带着合法的兴奋剂来转战研究EOS.进入正题。</p>
+<h3 id="编译环境："><a href="#编译环境：" class="headerlink" title="编译环境："></a>编译环境：</h3><p>Ubuntu 17.10</p>
+<h3 id="编译步骤："><a href="#编译步骤：" class="headerlink" title="编译步骤："></a>编译步骤：</h3><h4 id="1-下载代码，编译代码（可以建立自己的目录）"><a href="#1-下载代码，编译代码（可以建立自己的目录）" class="headerlink" title="1.下载代码，编译代码（可以建立自己的目录）"></a>1.下载代码，编译代码（可以建立自己的目录）</h4><p>git clone <a href="https://github.com/eosio/eos" target="_blank" rel="noopener">https://github.com/eosio/eos</a> –recursive</p>
+<p>cd eos<br>git checkout dawn-2.x<br>./build.sh ubuntu</p>
+<h4 id="2-启动eos，连接到eos测试节点（手动对应好目录）"><a href="#2-启动eos，连接到eos测试节点（手动对应好目录）" class="headerlink" title="2.启动eos，连接到eos测试节点（手动对应好目录）"></a>2.启动eos，连接到eos测试节点（手动对应好目录）</h4><p>cd ~/eos/build/scripts<br>./start_npnode.sh</p>
+<p>执行后，一般提示如下<br>Synching requires at least 8 minutes, depending on network conditions.</p>
+<h4 id="3-查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）"><a href="#3-查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）" class="headerlink" title="3.查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）"></a>3.查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）</h4><p>tail -F testnet_np/stderr.txt</p>
+<h3 id="成功提示："><a href="#成功提示：" class="headerlink" title="成功提示："></a>成功提示：</h3><p>sudo netstat -ntlp<br>如有如下提示：（已经跑起）<br>tcp        0      0 127.0.0.1:8888          0.0.0.0:<em>               LISTEN      3988/../programs/eo<br>tcp        0      0 0.0.0.0:5355            0.0.0.0:</em>               LISTEN      637/systemd-resolve<br>tcp        0      0 0.0.0.0:9877            0.0.0.0:*               LISTEN      3988/../programs/eo </p>
+<p>端口8888：是eos的rest监听端口。</p>
+<p>端口9877：是eos的p2p节点互联端口。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Go-Ethereum/">Go-Ethereum</a>
+  <span></span> <a href="/tags/EOS/">EOS</a>
   </div>
 
 
@@ -105,7 +116,7 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2015/01/14/5.go-ethereum-修改创世区块默认不出块的方式/" data-title="5.go-ethereum-修改创世区块默认不出块的方式 | woyinzf" data-tsina="" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/01/14/1.EOS介绍及正确编译步骤/" data-title="1.EOS介绍及正确编译步骤 | woyinzf" data-tsina="" class="share clearfix">
   </div>
 
 </div>
@@ -115,18 +126,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2015/01/14/6.docker-的一些重要概念/" title="6.docker 的一些重要概念">
+ <a href="/2015/01/14/1.go-基础知识/" title="1.go基础知识">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  6.docker 的一些重要概念</span>
+  1.go基础知识</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2015/01/14/2.oracle-dba常用命令/"  title="2.oracle-dba常用命令">
+<a href="/2015/01/14/1.etcd-初始ETCD/"  title="1.初始ETCD">
  <strong>NEXT:</strong><br/> 
- <span>2.oracle-dba常用命令
+ <span>1.初始ETCD
 </span>
 </a>
 </div>
@@ -139,7 +150,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#EOS简介："><span class="toc-number">1.</span> <span class="toc-text">EOS简介：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译环境："><span class="toc-number">2.</span> <span class="toc-text">编译环境：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译步骤："><span class="toc-number">3.</span> <span class="toc-text">编译步骤：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-下载代码，编译代码（可以建立自己的目录）"><span class="toc-number">3.1.</span> <span class="toc-text">1.下载代码，编译代码（可以建立自己的目录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-启动eos，连接到eos测试节点（手动对应好目录）"><span class="toc-number">3.2.</span> <span class="toc-text">2.启动eos，连接到eos测试节点（手动对应好目录）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）"><span class="toc-number">3.3.</span> <span class="toc-text">3.查看同步情况（我的大概同步一小时，具体因网速决定，中间报错可以忽略，直到同步完毕）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成功提示："><span class="toc-number">4.</span> <span class="toc-text">成功提示：</span></a></li></ol>
   </div>
 
 <div id="asidepart">

@@ -62,14 +62,19 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.mongodb-docker化搭建/" title="1.mongodb docker化搭建" itemprop="url">
+    <a href="/2015/01/14/1.mac的常用技巧/" title="1.mac 的常用技巧" itemprop="url">
   
-    <h1 itemprop="name">1.mongodb docker化搭建</h1>
+    <h1 itemprop="name">1.mac 的常用技巧</h1>
     
      
-           <p itemprop="description" >学习地址：https://hub.docker.com/_/mongo/
-==mongo的相关操作======start（下载官网mongo）启动容器：docker run -d –name sde-mongo -p 27017:27017 mongo –auth
-进入容器：(初</p>
+           <p itemprop="description" >1.彻底清理浏览器缓存：
+清理火狐，谷歌的浏览器缓存————可以从 safel 浏览器里进行彻底清除。
+2.mac 查询文件
+which solcjs
+3.mac 下设置vi/vim 高亮
+步骤1：
+  cp /usr/share/vim/vimrc ~/.vimrc
+  先复制</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -78,16 +83,15 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.etcd-初始ETCD/" title="1.初始ETCD" itemprop="url">
+    <a href="/2015/01/14/1.nodejs-nodejs程序docker化部署/" title="1.nodejs程序docker化部署" itemprop="url">
   
-    <h1 itemprop="name">1.初始ETCD</h1>
+    <h1 itemprop="name">1.nodejs程序docker化部署</h1>
     
      
-           <p itemprop="description" >本机跑起etcd的步骤：
-1.安装 go 1.9
-2.执行如下步骤：
-git clone https://github.com/coreos/etcd.git$ cd etcd$ ./build
-GOPATH should be set$ echo $GOPATH/Users/e</p>
+           <p itemprop="description" >1.下载node环境：docker pull node
+2.编写脚本文件restart_cm(内容如下)———记得授权给此脚本： chmod +x *.sh
+sudo docker stop $(sudo docker ps -q -f “name=cm”)
+sudo docke</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -108,6 +112,38 @@ GOPATH should be set$ echo $GOPATH/Users/e</p>
 
 2.第一个 iota 等于 0 ； 以后每个都要累加。
 3.gofmt –w program.go 会格式化该源文件的代码然后将格式化后的代码覆盖原始内容（如果不加参数 -w 则</p>
+        
+    
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.EOS介绍及正确编译步骤/" title="1.EOS介绍及正确编译步骤" itemprop="url">
+  
+    <h1 itemprop="name">1.EOS介绍及正确编译步骤</h1>
+    
+     
+           <p itemprop="description" >EOS简介：EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的应用可以横向和纵向的扩展。这通过构建一个仿操作系统的方式来实现，在它之上可以构建应用程序。该软件提供帐户、身份验证、数据库、异步通信和跨越数百个CPU内核或集群的应用程序调度。由此产生的技术是一种区块链架构</p>
+        
+    
+    <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.etcd-初始ETCD/" title="1.初始ETCD" itemprop="url">
+  
+    <h1 itemprop="name">1.初始ETCD</h1>
+    
+     
+           <p itemprop="description" >本机跑起etcd的步骤：
+1.安装 go 1.9
+2.执行如下步骤：
+git clone https://github.com/coreos/etcd.git$ cd etcd$ ./build
+GOPATH should be set$ echo $GOPATH/Users/e</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -178,54 +214,24 @@ onpaste=”return false” onselectstart=”return false”</p>
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/1.oracle-数据库表空间权限的实现步骤/" title="1.Oracle 数据库表空间权限的实现步骤" itemprop="url">
+    <a href="/2015/01/14/3.mysql-存储过程的用法/" title="3.mysql-存储过程的用法" itemprop="url">
   
-    <h1 itemprop="name">1.Oracle 数据库表空间权限的实现步骤</h1>
+    <h1 itemprop="name">3.mysql-存储过程的用法</h1>
     
      
-           <p itemprop="description" >1.创建数据库实例，通过工具 database  configuration assistant .set oracle_sid=ORCL  修改当前的服务名；然后在plsql登录 用户名 sysdba  密码 sysdba  服务名为新建的那个库的。连接为 SYSDBA2cre</p>
+           <p itemprop="description" >–查看存储过程
+SHOW CREATE PROCEDURE clearData;
+–创建一个几天创建一个   日表月表的存储过程
+CREATE DEFINER=icityusr1@% PROCEDURE createTable()begin  declare sql_str va</p>
         
     
     <time datetime="2015-01-14T15:03:42.000Z" itemprop="datePublished">2015-01-14</time>
   </a>
 </section>
 
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.mysql-常用操作/" title="2.mysql-常用操作" itemprop="url">
-  
-    <h1 itemprop="name">2.mysql-常用操作</h1>
-    
-     
-           <p itemprop="description" >1.linux 启动mysql命令：
-在/opt/mysql/下 用./bin/mysqld_safe &amp;amp; 启动
-2.查看mysql日志的方法：
-去/var/log/mysqld.log日志中看看日志中的最后几行是什么
-
-要用root密码访问数据库用这个mysql  -h</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/2.rabbitmq-常用命令/" title="2.rabbitmq常用命令" itemprop="url">
-  
-    <h1 itemprop="name">2.rabbitmq常用命令</h1>
-    
-     
-           <p itemprop="description" >启动服务/usr/lib/rabbitmq/bin/rabbitmq-server start &amp;amp;Ø 停止服务/usr/lib/rabbitmq/bin/rabbitmq-server stop &amp;amp;Ø 查看队列中的数据(**)/usr/lib/rabbitmq/b</p>
-        
-    
-    <time datetime="2015-01-14T15:02:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </div>
@@ -240,7 +246,7 @@ onpaste=”return false” onselectstart=”return false”</p>
 	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/blog/" title="blog">blog<sup>58</sup></a></li>
+			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
 		
 		</ul>
 </div>
@@ -252,6 +258,8 @@ onpaste=”return false” onselectstart=”return false”</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
+		
+			<li><a href="/tags/EOS/" title="EOS">EOS<sup>1</sup></a></li>
 		
 			<li><a href="/tags/Etcd/" title="Etcd">Etcd<sup>1</sup></a></li>
 		
