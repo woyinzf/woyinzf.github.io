@@ -34,7 +34,7 @@
 				<h1 class="site-name"><a href="/" title="woyinzf">woyinzf</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -47,7 +47,7 @@
 					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -59,6 +59,38 @@
     </header>
     <div id="container">
       <div id="main">
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.go-ethereum-在centos-7.0下安装步骤/" title="1.centos7.0下 安装 go-ethereum" itemprop="url">
+  
+    <h1 itemprop="name">1.centos7.0下 安装 go-ethereum</h1>
+    
+     
+           <p itemprop="description" >上代码执行一下步骤：
+yum install golangyum install gmp-develgit clone https://github.com/ethereum/go-ethereumcd go-ethereummake gethbuild/bin/geth    </p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
+  
+    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
+    
+     
+           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
+client：105
+server：103
++++</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
 
   <section class="post" itemscope itemprop="blogPost">
   
@@ -74,6 +106,73 @@ Sql代码
 
 mysql&amp;gt; use mysql;  
 mysql&amp;gt; GRANT ALL ON . TO </p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
+  
+    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
+    
+     
+           <p itemprop="description" >环境：Centos7.2
+1.安装docker。    yum install docker    systemctl start docker    /     service start docker
+2.安装Docker-Compose
+执行下面的命令安装compose 
+</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
+  
+    <h1 itemprop="name">1.docker常用命令</h1>
+    
+     
+           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
+运行后退出：docker run centos /bin/echo ‘hello world’
+查看运行的及停止运行的容器docker ps -a
+运行一个容器（命名，i打开，t打开终</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
+  
+    <h1 itemprop="name">1.zookeeper 常用操作</h1>
+    
+     
+           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
+给本地zk授权—–便于查看value值addauth digest admin:admin
+赋值后，可以执行此命令，查看值</p>
+        
+    
+    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/1.redis的安装配置/" title="1.redis的安装配置" itemprop="url">
+  
+    <h1 itemprop="name">1.redis的安装配置</h1>
+    
+     
+           <p itemprop="description" >CentOS 6.5 下安装 Redis 2.8.7
+wget http://download.redis.io/redis-stable.tar.gztar xvzf redis-stable.tar.gzcd redis-stablemake
+前面3步应该没有问题，主要的问题</p>
         
     
     <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
@@ -103,121 +202,6 @@ vi 操作 和 find 和远程copy （scp）操作
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2015/01/14/2.docker-Centos7.3下搭建/" title="2.docker 环境搭建及测试" itemprop="url">
-  
-    <h1 itemprop="name">2.docker 环境搭建及测试</h1>
-    
-     
-           <p itemprop="description" >++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++system:    Centos7.3版本信息：Docker version 1.12.6
-client：105
-server：103
-+++</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/4.docker-Harbor的搭建及客户端的使用/" title="4.docker Harbor的搭建及客户端的使用" itemprop="url">
-  
-    <h1 itemprop="name">4.docker Harbor的搭建及客户端的使用</h1>
-    
-     
-           <p itemprop="description" >环境：Centos7.2
-1.安装docker。    yum install docker    systemctl start docker    /     service start docker
-2.安装Docker-Compose
-执行下面的命令安装compose 
-</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.zabbix-通过docker跑起zabbix-server/" title="1.zookeeper 常用操作" itemprop="url">
-  
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
-    
-     
-           <p itemprop="description" >查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，查看值</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.zookeeper-常用操作/" title="1.zookeeper 常用操作" itemprop="url">
-  
-    <h1 itemprop="name">1.zookeeper 常用操作</h1>
-    
-     
-           <p itemprop="description" >上代码查看命令：ls /查看命令：ls2 /删除节点命令：rmr /portal/sysconfig清空节点内容：delete /portal/sysconfig
-给本地zk授权—–便于查看value值addauth digest admin:admin
-赋值后，可以执行此命令，</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.rabbix-docker化搭建/" title="1.Rabbix-docker 化搭建" itemprop="url">
-  
-    <h1 itemprop="name">1.Rabbix-docker 化搭建</h1>
-    
-     
-           <p itemprop="description" >启用容器方法1，会多一个镜像docker run -d –hostname my-rabbit –name sde-rabbit -p 8080:15672 rabbitmq:3-management
-启用容器方法2，需要进入容器，启用一个命令（下面有rabbitmq_manag</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.docker-常用命令/" title="1.docker常用命令" itemprop="url">
-  
-    <h1 itemprop="name">1.docker常用命令</h1>
-    
-     
-           <p itemprop="description" >docker searchdocker pulldocker imagesdocker rmi
-运行后退出：docker run centos /bin/echo ‘hello world’
-查看运行的及停止运行的容器docker ps -a
-运行一个容器（命名，i打开，t打开终</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2015/01/14/1.kafka-常用操作/" title="1.kafka 常用命令" itemprop="url">
-  
-    <h1 itemprop="name">1.kafka 常用命令</h1>
-    
-     
-           <p itemprop="description" >上代码启动服务      首先启动zookeeper服务bin/zookeeper-server-start.sh config/zookeeper.properties
-启动Kafka
-bin/kafka-server-start.sh config/server.proper</p>
-        
-    
-    <time datetime="2015-01-14T15:01:42.000Z" itemprop="datePublished">2015-01-14</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
     <a href="/2015/01/14/1.html-超链接target处理/" title="1.超链接加上garget处理" itemprop="url">
   
     <h1 itemprop="name">1.超链接加上garget处理</h1>
@@ -231,24 +215,38 @@ bin/kafka-server-start.sh config/server.proper</p>
   </a>
 </section>
 
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2015/01/14/11.java-并发调用（压测）/" title="11.JAVA并发调用（压测）" itemprop="url">
+  
+    <h1 itemprop="name">11.JAVA并发调用（压测）</h1>
+    
+     
+           <p itemprop="description" >1.Test类写一个main方法2.里面实现：（可以写多个这样代码块/或者循环写）new Thread() {@Overridepublic void run() {                try {                 String url = “http:</p>
+        
+    
+    <time datetime="2015-01-14T13:42:42.000Z" itemprop="datePublished">2015-01-14</time>
+  </a>
+</section>
+
 
   <nav id="page-nav" class="clearfix">
-    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
-			<li><a href="/categories/blog/" title="blog">blog<sup>59</sup></a></li>
+			<li><a href="/categories/blog/" title="blog">blog<sup>58</sup></a></li>
 		
 		</ul>
 </div>
@@ -256,7 +254,7 @@ bin/kafka-server-start.sh config/server.proper</p>
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			<li><a href="/tags/Docker/" title="Docker">Docker<sup>6</sup></a></li>
@@ -293,14 +291,14 @@ bin/kafka-server-start.sh config/server.proper</p>
 		
 			<li><a href="/tags/Zabbix/" title="Zabbix">Zabbix<sup>1</sup></a></li>
 		
-			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>2</sup></a></li>
+			<li><a href="/tags/Zookeeper/" title="Zookeeper">Zookeeper<sup>1</sup></a></li>
 		
 		</ul>
 </div>
 
 
   <div class="rsspart">
-	<a href="" target="_blank" title="rss">RSS</a>
+	<a href="" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
